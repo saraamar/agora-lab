@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGORA Lab — Complete Concept</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --terra-dark: #1A120A;
+    --terra-deep: #4A2512;
+    --terra: #8B5E3C;
+    --terra-mid: #C4956A;
+    --terra-light: #F5EBE0;
+    --green-deep: #2C4A3E;
+    --green-mid: #6B9E8A;
+    --text-primary: #1A120A;
+    --text-secondary: #5C4033;
+    --text-tertiary: #9E7B5A;
+    --bg: #FDFAF7;
+    --bg-secondary: #F5EBE0;
+    --border: rgba(139,94,60,0.15);
+    --border-strong: rgba(139,94,60,0.3);
+  }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .site-nav {
+    background: var(--terra-dark);
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(196,149,106,0.2);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    margin-right: 2rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .nav-logo-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 22px;
+  }
+  .nav-logo-bars span {
+    width: 4px;
+    border-radius: 1px;
+    display: block;
+  }
+  .nav-logo-text {
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    font-weight: normal;
+    color: #FAF0E6;
+    letter-spacing: 0.04em;
+  }
+  .nav-tabs {
+    display: flex;
+    gap: 0;
+    flex: 1;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    font-family: 'Georgia', serif;
+    font-size: 12px;
+    color: rgba(196,149,106,0.7);
+    padding: 18px 16px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+  .nav-tab:hover { color: #C4956A; }
+  .nav-tab.active { color: #FAF0E6; border-bottom-color: #C4956A; }
+
+  /* MAIN */
+  .main { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+  .pane { display: none; }
+  .pane.visible { display: block; }
+
+  /* HERO BLOCK */
+  .hero {
+    background: var(--terra-dark);
+    border-radius: 4px;
+    padding: 3rem 3rem 2.5rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    border: 40px solid rgba(196,149,106,0.06);
+  }
+  .hero-eye {
+    font-family: 'Georgia', serif;
+    font-size: 11px;
+    color: #C4956A;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .hero-h {
+    font-family: 'Georgia', serif;
+    font-size: 32px;
+    font-weight: normal;
+    color: #FAF0E6;
+    line-height: 1.25;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.3px;
+  }
+  .hero-p {
+    font-size: 14px;
+    color: rgba(196,149,106,0.85);
+    line-height: 1.8;
+    max-width: 520px;
+  }
+
+  /* SECTION LABEL */
+  .sl {
+    font-family: 'Georgia', serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-tertiary);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  /* CARDS */
+  .card {
+    border: 0.5px solid var(--border-strong);
+    border-radius: 2px;
+    padding: 1.25rem 1.5rem;
+    background: white;
+    margin-bottom: 10px;
+  }
+  .card-accent {
+    border-left: 3px solid var(--terra);
+    padding-left: 1.25rem;
+  }
+  .card-h {
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+  .card-p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+
+  /* MISSION QUOTE */
+  .mission-box {
+    border-left: 3px solid var(--terra);
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-secondary);
+    margin-bottom: 1.5rem;
+  }
+  .mission-text {
+    font-family: 'Georgia', serif;
+    font-size: 17px;
+    color: var(--text-primary);
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  /* PILLARS */
+  .pillar {
+    border: 0.5px solid var(--border-strong);
+    border-radius: 2px;
+    padding: 1.25rem 1.4rem;
+    background: white;
+  }
+  .pillar-letter {
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    color: var(--terra);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .pillar-name {
+    font-family: 'Georgia', serif;
+    font-size: 13px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .pillar-q {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  .pillar-proj {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+
+  /* PROJECT ROWS */
+  .proj-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 12px;
+    border: 0.5px solid var(--border);
+    border-radius: 2px;
+    margin-bottom: 6px;
+    background: white;
+  }
+  .proj-badge {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-family: 'Georgia', serif;
+    letter-spacing: 0.04em;
+  }
+  .badge-a { background: #F5EBE0; color: #4A2512; }
+  .badge-g { background: #E8F2EE; color: #1B4332; }
+  .badge-o { background: #F0EAE0; color: #5C3D1E; }
+  .badge-r { background: #EAE8F5; color: #2E1F6B; }
+  .proj-title { font-size: 13px; color: var(--text-primary); margin: 0 0 2px; font-family: 'Georgia', serif; }
+  .proj-sub { font-size: 11px; color: var(--text-tertiary); }
+
+  /* LOGO LOCKUP */
+  .logo-lockup {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 2rem;
+    background: white;
+    border: 0.5px solid var(--border-strong);
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+  .logo-lockup.dark { background: var(--terra-dark); }
+  .logo-name-lg {
+    font-family: 'Georgia', serif;
+    font-size: 26px;
+    font-weight: normal;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .logo-lockup.dark .logo-name-lg { color: #FAF0E6; }
+  .logo-sub-sm { font-size: 11px; color: var(--terra); letter-spacing: 0.03em; margin-bottom: 3px; }
+  .logo-lockup.dark .logo-sub-sm { color: #C4956A; }
+  .logo-inst-sm { font-size: 10px; color: var(--text-tertiary); }
+  .logo-lockup.dark .logo-inst-sm { color: rgba(196,149,106,0.5); }
+
+  /* PALETTE */
+  .pal { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .sw { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+  .sc { height: 48px; border-radius: 3px; }
+  .sw-label { font-size: 10px; color: var(--text-secondary); font-family: 'Georgia', serif; }
+  .sw-hex { font-size: 9px; color: var(--text-tertiary); font-family: monospace; }
+
+  /* TYPE SPECIMENS */
+  .type-row {
+    border-left: 2px solid var(--terra);
+    padding-left: 16px;
+    margin-bottom: 20px;
+  }
+  .type-meta { font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px; font-family: 'Georgia', serif; }
+  .t-disp { font-family: 'Georgia', serif; font-size: 28px; color: var(--text-primary); line-height: 1.2; letter-spacing: -0.4px; }
+  .t-head { font-family: 'Georgia', serif; font-size: 18px; color: var(--text-primary); line-height: 1.35; }
+  .t-body { font-size: 14px; color: var(--text-secondary); line-height: 1.8; max-width: 500px; }
+  .t-cap { font-size: 11px; color: var(--terra); text-transform: uppercase; letter-spacing: 0.1em; font-family: 'Georgia', serif; }
+
+  /* MOOD CARDS */
+  .mood-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.5rem; }
+  .mood { border: 0.5px solid var(--border-strong); border-radius: 2px; overflow: hidden; background: white; }
+  .mood-bar { height: 4px; }
+  .mood-body { padding: 14px 16px; }
+  .mood-t { font-family: 'Georgia', serif; font-size: 13px; color: var(--text-primary); margin-bottom: 6px; }
+  .mood-d { font-size: 12px; color: var(--text-secondary); line-height: 1.65; }
+
+  /* SITE PAGES */
+  .page-card {
+    background: var(--terra-dark);
+    border-radius: 2px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 8px;
+  }
+  .page-eye { font-size: 10px; color: #C4956A; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; font-family: 'Georgia', serif; }
+  .page-h { font-family: 'Georgia', serif; font-size: 15px; color: #FAF0E6; margin-bottom: 4px; }
+  .page-p { font-size: 12px; color: rgba(196,149,106,0.7); line-height: 1.65; }
+
+  /* SITE SECTIONS */
+  .site-section {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 12px;
+    border: 0.5px solid var(--border);
+    border-radius: 2px;
+    margin-bottom: 6px;
+    background: white;
+  }
+  .sec-num { font-size: 12px; color: var(--terra); min-width: 18px; padding-top: 1px; font-family: 'Georgia', serif; font-style: italic; }
+  .sec-name { font-family: 'Georgia', serif; font-size: 13px; color: var(--text-primary); margin-bottom: 3px; }
+  .sec-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* FRENCH NOTE */
+  .fr-note {
+    background: #F5EBE0;
+    border-radius: 2px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--terra);
+  }
+  .fr-note p { font-size: 13px; color: var(--terra-deep); line-height: 1.75; font-style: italic; }
+
+  /* LAUNCH SEQUENCE */
+  .launch-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 1rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .launch-step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    color: var(--terra);
+    min-width: 28px;
+    font-style: italic;
+    line-height: 1;
+    padding-top: 2px;
+  }
+  .step-h { font-family: 'Georgia', serif; font-size: 14px; color: var(--text-primary); margin-bottom: 4px; }
+  .step-p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+
+  .divider { border: none; border-top: 0.5px solid var(--border); margin: 2rem 0; }
+
+  .note-block {
+    background: var(--bg-secondary);
+    border-radius: 2px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .note-block p { font-size: 13px; color: var(--text-secondary); line-height: 1.75; }
+
+  @media (max-width: 600px) {
+    .main { padding: 2rem 1.25rem 4rem; }
+    .hero { padding: 2rem 1.5rem; }
+    .hero-h { font-size: 24px; }
+    .mood-grid { grid-template-columns: 1fr; }
+    .grid2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-bars">
+      <span style="height:12px; background:#8B5E3C;"></span>
+      <span style="height:16px; background:#C4956A;"></span>
+      <span style="height:22px; background:#FAF0E6;"></span>
+      <span style="height:13px; background:#8B5E3C; opacity:0.6;"></span>
+    </div>
+    <span class="nav-logo-text">AGORA Lab</span>
+  </a>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="show('identity',this)">Identity</button>
+    <button class="nav-tab" onclick="show('mission',this)">Mission</button>
+    <button class="nav-tab" onclick="show('pillars',this)">Pillars</button>
+    <button class="nav-tab" onclick="show('visual',this)">Visual identity</button>
+    <button class="nav-tab" onclick="show('site',this)">Website</button>
+    <button class="nav-tab" onclick="show('french',this)">Moroccan site</button>
+  </div>
+</nav>
+
+<main class="main">
+
+  <!-- IDENTITY -->
+  <div id="pane-identity" class="pane visible">
+    <div class="hero">
+      <p class="hero-eye">AGORA Lab · BGSU School of Engineering</p>
+      <p class="hero-h">Applied Global Operations<br>Research & Analytics</p>
+      <p class="hero-p">Where industrial systems meet the economies the world's research has yet to fully see — Moroccan cooperatives, MENA manufacturers, Northwest Ohio factory floors, AfCFTA trade corridors. The agora was the meeting place. This lab is ours.</p>
+    </div>
+
+    <p class="sl">Logo lockup</p>
+    <div class="logo-lockup">
+      <svg width="48" height="48" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="48" height="48" rx="4" fill="#1A120A"/>
+        <rect x="10" y="20" width="6" height="20" rx="1" fill="#8B5E3C"/>
+        <rect x="20" y="14" width="6" height="26" rx="1" fill="#C4956A"/>
+        <rect x="30" y="8" width="6" height="32" rx="1" fill="#FAF0E6"/>
+        <rect x="40" y="18" width="6" height="22" rx="1" fill="#8B5E3C" opacity="0.6"/>
+        <line x1="10" y1="42" x2="48" y2="42" stroke="#C4956A" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <div>
+        <div class="logo-name-lg">AGORA Lab</div>
+        <div class="logo-sub-sm">Applied Global Operations Research & Analytics</div>
+        <div class="logo-inst-sm">Sara Haddou Amar, PhD · Bowling Green State University</div>
+      </div>
+    </div>
+    <div class="logo-lockup dark">
+      <svg width="48" height="48" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="20" width="6" height="20" rx="1" fill="#8B5E3C"/>
+        <rect x="20" y="14" width="6" height="26" rx="1" fill="#C4956A"/>
+        <rect x="30" y="8" width="6" height="32" rx="1" fill="#FAF0E6"/>
+        <rect x="40" y="18" width="6" height="22" rx="1" fill="#8B5E3C" opacity="0.6"/>
+        <line x1="10" y1="42" x2="48" y2="42" stroke="#C4956A" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <div>
+        <div class="logo-name-lg">AGORA Lab</div>
+        <div class="logo-sub-sm">Applied Global Operations Research & Analytics</div>
+        <div class="logo-inst-sm">Sara Haddou Amar, PhD · Bowling Green State University</div>
+      </div>
+    </div>
+
+    <p class="sl">Why AGORA works on every dimension</p>
+    <div class="grid2">
+      <div class="card"><p class="card-h">As a classical reference</p><p class="card-p">The agora was where Athenian commerce, governance, and civic debate converged — exactly the intersection your lab studies: industrial systems, human decision-making, and community economics.</p></div>
+      <div class="card"><p class="card-h">As an acronym</p><p class="card-p">Applied — field-based, not theoretical. Global — research sites span Ohio, Morocco, UAE, West Africa. Operations Research & Analytics — your ISE disciplinary home, named explicitly.</p></div>
+      <div class="card"><p class="card-h">In French and Arabic</p><p class="card-p">Agora (أغورا) is used directly in French and Arabic academic writing. No translation needed. Labo AGORA reads naturally. The Moroccan site carries the same name without losing anything.</p></div>
+      <div class="card"><p class="card-h">As a lab identity</p><p class="card-p">The agora was not a building — it was a place that existed because people chose to gather there. AGORA Lab is not a room at BGSU. It is a network that meets at the intersection of industrial systems and the real world.</p></div>
+    </div>
+  </div>
+
+  <!-- MISSION -->
+  <div id="pane-mission" class="pane">
+    <div class="mission-box">
+      <p class="mission-text">"We study what happens when intelligent systems enter workplaces and economies that most operations research has yet to fully examine — and we build the analytical tools to make those systems work better for the people inside them."</p>
+    </div>
+
+    <p class="sl">The animating question</p>
+    <div class="card card-accent" style="margin-bottom:1.5rem;">
+      <p class="card-h">When AI and automation enter an industrial system, who gains decision-making power — and who loses it?</p>
+      <p class="card-p">This question runs through every project in AGORA Lab: the HMLV manufacturing work in Ohio, the cooperative resilience fieldwork in Morocco, the SME AI adoption study, the AfCFTA digital trade proposal, the Amazon seller decision-support experiment. They are all versions of the same inquiry.</p>
+    </div>
+
+    <p class="sl">What the lab stands for</p>
+    <div class="grid2">
+      <div class="card"><p class="card-h">Applied over abstract</p><p class="card-p">Every AGORA project has a field component, an industry partner, or a real decision-maker as a stakeholder. Methods serve problems — not the other way around.</p></div>
+      <div class="card"><p class="card-h">Global over provincial</p><p class="card-p">AGORA treats Ohio and Morocco as co-equal research territories. The lab's intellectual geography is deliberately wider than its home institution.</p></div>
+      <div class="card"><p class="card-h">Systems over silos</p><p class="card-p">Industrial engineering, development economics, human factors, and logistics are not separate disciplines in this lab — they are lenses on the same set of problems.</p></div>
+      <div class="card"><p class="card-h">People over throughput</p><p class="card-p">Industry 5.0 is the intellectual frame: human-centricity and resilience over automation-first efficiency. Optimization that excludes is not optimization.</p></div>
+    </div>
+
+    <p class="sl">What AGORA does not do</p>
+    <div class="card" style="margin-bottom:1.5rem;"><p class="card-p">AGORA Lab does not publish theoretical AI papers with no real-world grounding. It does not study well-resourced firms with clean data as its primary subject. It is not a consulting arm, a software lab, or a lab organized around a single funded project. It is a sustained inquiry into how industrial systems behave in the places and populations most operations research has overlooked.</p></div>
+  </div>
+
+  <!-- PILLARS -->
+  <div id="pane-pillars" class="pane">
+    <p class="sl">Four research pillars</p>
+    <div class="grid2" style="margin-bottom:2rem;">
+      <div class="pillar">
+        <p class="pillar-letter">A</p>
+        <p class="pillar-name">Applied human–AI decision systems</p>
+        <p class="pillar-q">"How do workers and managers make better decisions when AI is a partner, not a replacement — especially when data is scarce?"</p>
+        <p class="pillar-proj">NSF GOALI (Yarder Mfg) · NSF Mfg Systems Integration · Amazon Research Awards</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-letter">G</p>
+        <p class="pillar-name">Global SME & cooperative operations</p>
+        <p class="pillar-q">"What does technology adoption actually look like inside artisanal cooperatives, small manufacturers, and platform sellers in constrained economies?"</p>
+        <p class="pillar-proj">UM6P AI adoption study · Agency Fund (agri-cooperatives) · Schmidt / J-PAL MIT</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-letter">O</p>
+        <p class="pillar-name">Operations research & industrial systems</p>
+        <p class="pillar-q">"How do we design and optimize industrial systems — layouts, logistics networks, recycling operations — when constraints are real and resources are limited?"</p>
+        <p class="pillar-proj">NOIC glass recycling · Super Rapids / OWT (awarded) · Facility layout & MCDM research</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-letter">R</p>
+        <p class="pillar-name">Regional development & digital trade</p>
+        <p class="pillar-q">"How does digital infrastructure change physical trade flows, labor markets, and economic agency across AfCFTA member states and MENA economies?"</p>
+        <p class="pillar-proj">Hinrich Foundation (AfCFTA) · Tohoku Forum 2028 · Urban & circular logistics</p>
+      </div>
+    </div>
+
+    <p class="sl">Active project portfolio</p>
+    <div class="proj-row"><span class="proj-badge badge-a">Pillar A</span><div><p class="proj-title">Human–AI decision policies for data-scarce HMLV manufacturing</p><p class="proj-sub">NSF GOALI · Co-PI: Yarder Manufacturing, Toledo, Ohio</p></div></div>
+    <div class="proj-row"><span class="proj-badge badge-a">Pillar A</span><div><p class="proj-title">Human–machine collaboration for Industry 5.0 supply chains</p><p class="proj-sub">NSF Manufacturing Systems Integration</p></div></div>
+    <div class="proj-row"><span class="proj-badge badge-g">Pillar G</span><div><p class="proj-title">AI advisory tools in Moroccan agricultural cooperatives</p><p class="proj-sub">The Agency Fund · Spring 2026</p></div></div>
+    <div class="proj-row"><span class="proj-badge badge-g">Pillar G</span><div><p class="proj-title">AI, jobs & skills: evidence from Moroccan SMEs</p><p class="proj-sub">Schmidt Foundation · J-PAL MIT</p></div></div>
+    <div class="proj-row"><span class="proj-badge badge-o">Pillar O</span><div><p class="proj-title">Glass recycling operations optimization — manufacturer & supply chain</p><p class="proj-sub">Northwest Ohio Innovation Consortium (NOIC)</p></div></div>
+    <div class="proj-row"><span class="proj-badge badge-r">Pillar R</span><div><p class="proj-title">Digital trade facilitation & goods flows across AfCFTA member states</p><p class="proj-sub">Hinrich Foundation</p></div></div>
+    <div class="proj-row"><span class="proj-badge badge-r">Pillar R</span><div><p class="proj-title">Resilient supply chains for heritage economies — post-disaster regions</p><p class="proj-sub">Tohoku Forum for Creativity 2028</p></div></div>
+    <div class="proj-row"><span class="proj-badge badge-a">Pillar A</span><div><p class="proj-title">Empowering SME sellers through human-AI decision support</p><p class="proj-sub">Amazon Research Awards · Spring 2026</p></div></div>
+  </div>
+
+  <!-- VISUAL IDENTITY -->
+  <div id="pane-visual" class="pane">
+    <p class="sl">Color palette — terracotta & sand</p>
+    <div class="pal">
+      <div class="sw"><div class="sc" style="width:80px; background:#1A120A;"></div><div class="sw-label">Near black</div><div class="sw-hex">#1A120A</div></div>
+      <div class="sw"><div class="sc" style="width:80px; background:#4A2512;"></div><div class="sw-label">Deep terra</div><div class="sw-hex">#4A2512</div></div>
+      <div class="sw"><div class="sc" style="width:80px; background:#8B5E3C;"></div><div class="sw-label">Primary terra</div><div class="sw-hex">#8B5E3C</div></div>
+      <div class="sw"><div class="sc" style="width:80px; background:#C4956A;"></div><div class="sw-label">Mid sand</div><div class="sw-hex">#C4956A</div></div>
+      <div class="sw"><div class="sc" style="width:80px; background:#F5EBE0; border:0.5px solid #ddd;"></div><div class="sw-label">Warm white</div><div class="sw-hex">#F5EBE0</div></div>
+      <div class="sw"><div class="sc" style="width:80px; background:#2C4A3E;"></div><div class="sw-label">Field green</div><div class="sw-hex">#2C4A3E</div></div>
+      <div class="sw"><div class="sc" style="width:80px; background:#6B9E8A;"></div><div class="sw-label">Mid green</div><div class="sw-hex">#6B9E8A</div></div>
+    </div>
+    <div class="note-block"><p>Terracotta and sand replace the tech-lab teal palette. These colors belong to the material world AGORA's research inhabits — Moroccan architecture, zellige tilework, rammed-earth cooperative workshops. Field green provides ecological grounding. Together they read as serious, warm, and distinctly non-corporate.</p></div>
+
+    <p class="sl">Typography specimens</p>
+    <div class="type-row"><p class="type-meta">Display · 28px / serif</p><p class="t-disp">Where industrial systems<br>meet the real world.</p></div>
+    <div class="type-row"><p class="type-meta">Section heading · 18px / serif</p><p class="t-head">Applied global operations research — from Ohio to the AfCFTA corridor</p></div>
+    <div class="type-row"><p class="type-meta">Body · 14px / serif</p><p class="t-body">AGORA Lab studies how industrial systems perform — and fail — in the economies most operations research has yet to fully examine: artisanal cooperatives in Morocco, high-mix manufacturers in Northwest Ohio, SME sellers on digital platforms, farmers navigating AI advisory tools.</p></div>
+    <div class="type-row"><p class="type-meta">Label / eyebrow · 11px / uppercase</p><p class="t-cap">Active research · Bowling Green State University</p></div>
+
+    <p class="sl">Mood direction</p>
+    <div class="mood-grid">
+      <div class="mood"><div class="mood-bar" style="background:#8B5E3C;"></div><div class="mood-body"><p class="mood-t">Grounded, not generic</p><p class="mood-d">Real photographs from field sites. Moroccan markets, Toledo factory floors, cooperative meetings. Never stock imagery of data visualizations or glowing circuits.</p></div></div>
+      <div class="mood"><div class="mood-bar" style="background:#C4956A;"></div><div class="mood-body"><p class="mood-t">Warm, not institutional</p><p class="mood-d">The terracotta palette signals that this lab cares about the material world — buildings, people, economies — not abstract systems. Engineering with texture.</p></div></div>
+      <div class="mood"><div class="mood-bar" style="background:#2C4A3E;"></div><div class="mood-body"><p class="mood-t">Precise, not busy</p><p class="mood-d">Generous whitespace. Two typeface weights. The research speaks — the design does not compete with it or perform sophistication on its behalf.</p></div></div>
+    </div>
+
+    <p class="sl">Logo rationale</p>
+    <div class="note-block"><p>The ascending bars in the logo mark are deliberately ambiguous: a bar chart (operations analytics), a Greek column (the agora), and a population histogram (the people the lab studies). All three readings are simultaneously true. The dark ground anchors it. The terracotta-to-sand progression mirrors the palette and the gradient from well-resourced to constrained economies — the territory AGORA deliberately moves across.</p></div>
+  </div>
+
+  <!-- SITE STRUCTURE -->
+  <div id="pane-site" class="pane">
+    <p class="sl">Seven pages — each with a distinct visitor and purpose</p>
+    <div class="page-card"><p class="page-eye">01 · Home</p><p class="page-h">The animating question, the field map, three live projects</p><p class="page-p">One job: make the right person feel they've found the right place. Opens with the question, not the CV.</p></div>
+    <div class="page-card"><p class="page-eye">02 · Mission</p><p class="page-h">Why AGORA exists — and what it refuses to do</p><p class="page-p">Four intellectual commitments. Industry 5.0 frame. The honest paragraph about what this lab is not.</p></div>
+    <div class="page-card"><p class="page-eye">03 · Research</p><p class="page-h">Organized by question, not by grant number</p><p class="page-p">Four pillars. Active project cards with funder, region, status. A transparent funding table.</p></div>
+    <div class="page-card"><p class="page-eye">04 · Field network</p><p class="page-h">The map that makes AGORA unusual</p><p class="page-p">Ohio · Morocco · UAE · AfCFTA corridor. Partner institutions by type. Site profiles written journalistically.</p></div>
+    <div class="page-card"><p class="page-eye">05 · People</p><p class="page-h">Contributors, not credentials</p><p class="page-p">PI profile in first person. Students described by contribution. International collaborators listed with active projects.</p></div>
+    <div class="page-card"><p class="page-eye">06 · Join</p><p class="page-h">Three doors — student, industry, international</p><p class="page-p">Each audience gets a distinct voice and invitation. The international collaborator section acknowledges asymmetries honestly.</p></div>
+    <div class="page-card"><p class="page-eye">07 · Outputs</p><p class="page-h">Research that leaves the building</p><p class="page-p">Publications filterable by pillar. Policy briefs as first-class outputs. Featured work explained for intelligent non-specialists.</p></div>
+
+    <p class="sl">Launch sequence</p>
+    <div style="margin-bottom:1.5rem; background:white; border:0.5px solid var(--border-strong); border-radius:2px; padding:1.25rem 1.5rem;">
+      <div class="launch-step">
+        <span class="step-num">1</span>
+        <div><p class="step-h">Weeks 1–2 · Minimum viable site</p><p class="step-p">Home page only: the animating question, a 3-sentence lab description, the field map (static), three active projects, and a contact form. Sufficient for the Tohoku LOI and NSF supplementary material.</p></div>
+      </div>
+      <div class="launch-step">
+        <span class="step-num">2</span>
+        <div><p class="step-h">Weeks 3–4 · Add Field Network page</p><p class="step-p">The geographic reach page is AGORA's biggest differentiator for Tohoku and international funders. Build it before the September 2026 proposal deadline.</p></div>
+      </div>
+      <div class="launch-step">
+        <span class="step-num">3</span>
+        <div><p class="step-h">Months 2–3 · Full site</p><p class="step-p">Mission, Research, People, Outputs, Join. Build as grants are awarded and collaborators join — the site grows with the lab, not ahead of it.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRENCH / MOROCCAN SITE -->
+  <div id="pane-french" class="pane">
+    <div class="fr-note"><p>La version marocaine du site AGORA Lab est un instrument distinct — pas une traduction du site anglophone. Elle s'adresse à un public différent : les coopératives artisanales, les PME industrielles, les chercheurs des universités marocaines (UM6P, Ecole Centrale Casablanca), et les organisations de développement régional. Son ton est celui d'une invitation au partenariat, pas d'un appel à candidature.</p></div>
+
+    <p class="sl">French site — distinct purpose, distinct voice</p>
+    <div class="grid2" style="margin-bottom:1.5rem;">
+      <div class="card"><p class="card-h">Audience principale</p><p class="card-p">Directeurs de coopératives · Chercheurs UM6P et Ecole Centrale · PME industrielles MENA · Organisations de développement (AfCFTA, PNUD, Banque mondiale) · Doctorants marocains cherchant un encadrement international</p></div>
+      <div class="card"><p class="card-h">Ce que ce site ne fait pas</p><p class="card-p">Il ne reproduit pas le site anglophone. Il ne liste pas les publications ni les grants. Il parle de ce que le labo observe sur le terrain au Maroc, de ce qu'il cherche à comprendre, et de comment on peut travailler ensemble.</p></div>
+    </div>
+
+    <p class="sl">Structure de la page marocaine — une seule page d'atterrissage</p>
+    <div class="site-section"><span class="sec-num">1</span><div><p class="sec-name">Qui sommes-nous — en trois phrases</p><p class="sec-desc">AGORA Lab est un laboratoire de recherche en ingénierie industrielle et systèmes, basé à la Bowling Green State University (Ohio, USA). Nos recherches portent sur la manière dont les systèmes industriels et les outils d'intelligence artificielle transforment le travail, les décisions et les économies — avec un ancrage empirique fort au Maroc et dans la région MENA.</p></div></div>
+    <div class="site-section"><span class="sec-num">2</span><div><p class="sec-name">Ce que nous étudions au Maroc</p><p class="sec-desc">Adoption de l'IA dans les PME manufacturières · Résilience des coopératives artisanales · Logistique urbaine et circulaire · Chaînes d'approvisionnement agricoles · Facilitation du commerce numérique (AfCFTA)</p></div></div>
+    <div class="site-section"><span class="sec-num">3</span><div><p class="sec-name">Nos partenaires au Maroc</p><p class="sec-desc">Université Mohammed VI Polytechnique (UM6P) · Ecole Centrale Casablanca · Université Ibn Toufaïl (programme doctoral) · Coopératives artisanales — région de Marrakech</p></div></div>
+    <div class="site-section"><span class="sec-num">4</span><div><p class="sec-name">Comment collaborer</p><p class="sec-desc">Invitation aux coopératives, PME, universités et organisations de développement. Trois formes : terrain de recherche · co-encadrement doctoral · partenaire de proposition de financement. Formulaire de contact simple.</p></div></div>
+    <div class="site-section"><span class="sec-num">5</span><div><p class="sec-name">La chercheuse</p><p class="sec-desc">Courte biographie de Sara Haddou Amar — ancrage marocain, trajectoire académique internationale, vision du laboratoire. Pas une liste de publications.</p></div></div>
+
+    <div class="divider"></div>
+    <div class="note-block"><p>The French landing page is a single page — not a full site. It is the door for Moroccan and MENA partners to understand what AGORA is doing in their region and how to get involved. It should be live at agora-lab.com/fr or as a separate simple URL, and linked from the English site's Field Network and Join pages.</p></div>
+  </div>
+
+</main>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.pane').forEach(p => p.classList.remove('visible'));
+    document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('pane-' + id).classList.add('visible');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
