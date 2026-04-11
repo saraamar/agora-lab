@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGORA Lab — Applied Global Operations Research & Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --terra-dark: #1A120A;
+  --terra-deep: #3D1F0A;
+  --terra: #8B5E3C;
+  --terra-mid: #C4956A;
+  --terra-light: #F5EBE0;
+  --terra-pale: #FDF8F4;
+  --green-deep: #1E3A30;
+  --green: #2C4A3E;
+  --green-mid: #6B9E8A;
+  --text: #1A120A;
+  --text-2: #5C4033;
+  --text-3: #9E7B5A;
+  --border: rgba(139,94,60,0.12);
+  --border-2: rgba(139,94,60,0.25);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--terra-pale);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(26,18,10,0.97);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center;
+  padding: 0 2.5rem;
+  height: 60px;
+  border-bottom: 1px solid rgba(196,149,106,0.15);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; margin-right: auto;
+}
+.nav-bars { display: flex; align-items: flex-end; gap: 3px; height: 20px; }
+.nav-bars span { width: 4px; border-radius: 1px; display: block; }
+.logo-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-weight: 400;
+  color: #FAF0E6; letter-spacing: 0.06em;
+}
+.nav-links { display: flex; gap: 0; }
+.nav-link {
+  font-size: 13px; color: rgba(196,149,106,0.7);
+  padding: 0 16px; height: 60px;
+  display: flex; align-items: center;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  letter-spacing: 0.02em;
+}
+.nav-link:hover { color: #FAF0E6; border-bottom-color: rgba(196,149,106,0.4); }
+.nav-link.cta {
+  background: var(--terra); color: #FAF0E6;
+  border-radius: 4px; margin-left: 12px; padding: 0 18px;
+  font-weight: 500; border-bottom: none; height: 36px;
+  align-self: center;
+}
+.nav-link.cta:hover { background: #A0724A; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  background: var(--terra-dark);
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 4rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg-pattern {
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(196,149,106,0.03) 80px, rgba(196,149,106,0.03) 81px),
+    repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(196,149,106,0.03) 80px, rgba(196,149,106,0.03) 81px);
+  pointer-events: none;
+}
+.hero-tag {
+  font-size: 11px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--terra-mid);
+  margin-bottom: 2rem;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 300; line-height: 1.05;
+  color: #FAF0E6; letter-spacing: -0.02em;
+  max-width: 900px;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+.hero-h1 em { font-style: italic; color: var(--terra-mid); }
+.hero-sub {
+  font-size: 17px; color: rgba(196,149,106,0.75);
+  max-width: 540px; line-height: 1.75;
+  margin-top: 2rem;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+.hero-actions {
+  display: flex; gap: 14px; margin-top: 3rem;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+.btn-primary {
+  background: var(--terra); color: #FAF0E6;
+  padding: 13px 28px; border-radius: 3px;
+  text-decoration: none; font-size: 14px; font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: #A0724A; }
+.btn-ghost {
+  color: rgba(196,149,106,0.8);
+  padding: 13px 28px; border-radius: 3px;
+  text-decoration: none; font-size: 14px;
+  border: 1px solid rgba(196,149,106,0.3);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: rgba(196,149,106,0.6); color: #C4956A; }
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; right: 4rem;
+  font-size: 11px; color: rgba(196,149,106,0.4);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  writing-mode: vertical-rl;
+  animation: fadeUp 1s 0.6s ease both;
+}
+
+/* ─── SECTIONS ─── */
+section { padding: 6rem 4rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.eyebrow {
+  font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--terra);
+  margin-bottom: 1.25rem; display: block;
+}
+.section-h {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300; line-height: 1.15;
+  color: var(--text); letter-spacing: -0.01em;
+  max-width: 680px; margin-bottom: 1.5rem;
+}
+.section-h em { font-style: italic; color: var(--terra); }
+.section-p {
+  font-size: 15px; color: var(--text-2);
+  line-height: 1.8; max-width: 620px;
+}
+
+/* ─── STATS STRIP ─── */
+.stats-strip {
+  background: var(--terra-deep);
+  padding: 3.5rem 4rem;
+}
+.stats-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+}
+.stat { border-left: 2px solid rgba(196,149,106,0.3); padding-left: 1.5rem; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; font-weight: 300;
+  color: #FAF0E6; line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-label { font-size: 12px; color: var(--terra-mid); line-height: 1.5; }
+
+/* ─── THE QUESTION ─── */
+.question-section { background: var(--terra-light); }
+.question-block {
+  max-width: 800px; margin: 0 auto;
+  text-align: center;
+}
+.question-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 300; font-style: italic;
+  color: var(--terra-dark); line-height: 1.3;
+  margin-bottom: 2rem;
+}
+.question-mark em { color: var(--terra); font-style: normal; }
+.question-sub {
+  font-size: 15px; color: var(--text-2); line-height: 1.8;
+  max-width: 560px; margin: 0 auto 2.5rem;
+}
+.thread-list {
+  display: flex; flex-direction: column; gap: 0;
+  text-align: left; max-width: 560px; margin: 0 auto;
+}
+.thread-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 0.5px solid var(--border-2);
+}
+.thread-item:last-child { border-bottom: none; }
+.thread-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--terra); flex-shrink: 0; margin-top: 7px;
+}
+.thread-text { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+.thread-text strong { color: var(--text); font-weight: 500; }
+
+/* ─── PILLARS ─── */
+.pillars-section { background: white; }
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5px;
+  background: var(--border);
+  border: 0.5px solid var(--border);
+  margin-top: 3rem;
+}
+.pillar-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  transition: background 0.2s;
+}
+.pillar-card:hover { background: var(--terra-pale); }
+.pillar-letter {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem; font-weight: 300;
+  color: var(--terra); line-height: 1;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+.pillar-name {
+  font-size: 14px; font-weight: 500;
+  color: var(--text); margin-bottom: 10px;
+  line-height: 1.4;
+}
+.pillar-question {
+  font-size: 13px; color: var(--text-2);
+  line-height: 1.7; margin-bottom: 1.25rem;
+  font-style: italic;
+}
+.pillar-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.pillar-tag {
+  font-size: 10px; padding: 2px 8px;
+  border-radius: 2px; background: var(--terra-light);
+  color: var(--terra-deep); letter-spacing: 0.03em;
+}
+
+/* ─── FIELD MAP TEXT ─── */
+.field-section { background: var(--terra-dark); }
+.field-section .section-h { color: #FAF0E6; }
+.field-section .section-p { color: rgba(196,149,106,0.8); }
+.field-section .eyebrow { color: var(--terra-mid); opacity: 0.7; }
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0;
+  margin-top: 3rem;
+  border: 1px solid rgba(196,149,106,0.15);
+}
+.field-site {
+  padding: 2rem 1.75rem;
+  border-right: 1px solid rgba(196,149,106,0.15);
+  border-bottom: 1px solid rgba(196,149,106,0.15);
+}
+.field-site:nth-child(3), .field-site:nth-child(6) { border-right: none; }
+@media (max-width: 780px) { .field-site { border-right: none; } }
+.field-region {
+  font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--terra-mid);
+  margin-bottom: 8px;
+}
+.field-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem; font-weight: 400;
+  color: #FAF0E6; margin-bottom: 8px; line-height: 1.3;
+}
+.field-desc {
+  font-size: 12px; color: rgba(196,149,106,0.6); line-height: 1.65;
+}
+
+/* ─── PROJECTS ─── */
+.projects-section { background: var(--terra-pale); }
+.projects-list {
+  margin-top: 3rem;
+  display: flex; flex-direction: column; gap: 0;
+  border: 0.5px solid var(--border-2);
+}
+.project-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.5rem 1.75rem;
+  border-bottom: 0.5px solid var(--border);
+  background: white;
+  transition: background 0.15s;
+}
+.project-row:last-child { border-bottom: none; }
+.project-row:hover { background: var(--terra-pale); }
+.project-pillar {
+  font-size: 10px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--terra); padding-top: 2px;
+}
+.project-title {
+  font-size: 14px; font-weight: 500;
+  color: var(--text); margin-bottom: 4px; line-height: 1.4;
+}
+.project-sub { font-size: 12px; color: var(--text-3); line-height: 1.5; }
+.project-status {
+  font-size: 10px; padding: 3px 9px; border-radius: 2px;
+  text-align: center; align-self: start;
+  white-space: nowrap;
+}
+.status-awarded { background: #E8F5E9; color: #1B5E20; }
+.status-active { background: #E3F2FD; color: #0D47A1; }
+.status-prep { background: var(--terra-light); color: var(--terra-deep); }
+
+/* ─── WHY JOIN ─── */
+.join-section { background: white; }
+.join-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5px;
+  background: var(--border);
+  border: 0.5px solid var(--border);
+  margin-top: 3rem;
+}
+.join-card {
+  background: white; padding: 2.25rem 2rem;
+  transition: background 0.2s;
+}
+.join-card:hover { background: var(--terra-pale); }
+.join-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem; font-weight: 300;
+  color: var(--terra-mid); line-height: 1;
+  margin-bottom: 1rem; font-style: italic;
+}
+.join-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+.join-text { font-size: 13px; color: var(--text-2); line-height: 1.7; }
+
+/* ─── TEAM ─── */
+.team-section { background: var(--terra-pale); }
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5px;
+  background: var(--border);
+  border: 0.5px solid var(--border);
+  margin-top: 3rem;
+}
+.team-card {
+  background: white; padding: 1.75rem 1.5rem;
+  transition: background 0.2s;
+}
+.team-card:hover { background: var(--terra-pale); }
+.team-initials {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--terra-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; color: var(--terra-mid);
+  margin-bottom: 1rem;
+}
+.team-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.team-role { font-size: 12px; color: var(--terra); margin-bottom: 4px; line-height: 1.4; }
+.team-inst { font-size: 11px; color: var(--text-3); line-height: 1.5; }
+.team-link {
+  display: inline-block; margin-top: 10px;
+  font-size: 11px; color: var(--terra);
+  text-decoration: none; letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--terra-mid);
+  padding-bottom: 1px;
+}
+.team-link:hover { color: var(--terra-deep); }
+
+/* ─── PARTNERS ─── */
+.partners-section { background: var(--terra-light); }
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.partner-card {
+  background: white; border: 0.5px solid var(--border-2);
+  border-radius: 3px; padding: 1.25rem 1.5rem;
+}
+.partner-type {
+  font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--terra);
+  margin-bottom: 6px;
+}
+.partner-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.partner-loc { font-size: 12px; color: var(--text-3); }
+
+/* ─── CONTACT ─── */
+.contact-section { background: var(--terra-dark); }
+.contact-section .eyebrow { color: var(--terra-mid); opacity: 0.6; }
+.contact-section .section-h { color: #FAF0E6; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5px;
+  background: rgba(196,149,106,0.15);
+  border: 1px solid rgba(196,149,106,0.15);
+  margin-top: 3rem;
+}
+.contact-card {
+  background: rgba(255,255,255,0.03);
+  padding: 2rem 1.75rem;
+  transition: background 0.2s;
+}
+.contact-card:hover { background: rgba(255,255,255,0.06); }
+.contact-who {
+  font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--terra-mid);
+  margin-bottom: 10px;
+}
+.contact-title { font-size: 15px; font-weight: 500; color: #FAF0E6; margin-bottom: 8px; }
+.contact-text { font-size: 13px; color: rgba(196,149,106,0.7); line-height: 1.7; margin-bottom: 1.25rem; }
+.contact-link {
+  font-size: 12px; color: var(--terra-mid);
+  text-decoration: none; letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(196,149,106,0.3);
+  padding-bottom: 1px;
+  transition: color 0.2s;
+}
+.contact-link:hover { color: #FAF0E6; border-bottom-color: rgba(196,149,106,0.6); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #0D0906;
+  padding: 2.5rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; color: rgba(196,149,106,0.5);
+  letter-spacing: 0.06em;
+}
+.footer-text { font-size: 11px; color: rgba(196,149,106,0.3); }
+.footer-links { display: flex; gap: 20px; }
+.footer-link {
+  font-size: 11px; color: rgba(196,149,106,0.4);
+  text-decoration: none; letter-spacing: 0.04em;
+}
+.footer-link:hover { color: rgba(196,149,106,0.7); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .hero { padding: 0 1.5rem 4rem; }
+  section { padding: 4rem 1.5rem; }
+  .stats-strip { padding: 2.5rem 1.5rem; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; }
+  .project-row { grid-template-columns: 1fr; gap: 6px; }
+  .project-status { width: fit-content; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-bars">
+      <span style="height:11px; background:#8B5E3C;"></span>
+      <span style="height:15px; background:#C4956A;"></span>
+      <span style="height:20px; background:#FAF0E6;"></span>
+      <span style="height:13px; background:#8B5E3C; opacity:0.5;"></span>
+    </div>
+    <span class="logo-wordmark">AGORA Lab</span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#mission">Mission</a>
+    <a class="nav-link" href="#research">Research</a>
+    <a class="nav-link" href="#field">Field Network</a>
+    <a class="nav-link" href="#team">People</a>
+    <a class="nav-link" href="#join">Join</a>
+    <a class="nav-link cta" href="/cdn-cgi/l/email-protection#ec9f8d818d9eac8e8b9f99c2898899">Get in touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-tag">Applied Global Operations Research & Analytics · BGSU School of Engineering</div>
+  <h1 class="hero-h1">
+    Where <em>industrial systems</em><br>meet the world they<br>actually operate in.
+  </h1>
+  <p class="hero-sub">
+    AGORA Lab studies operations management, manufacturing systems, and human decision-making in the economies and communities most research overlooks — from Midwestern factory floors to smallholder cooperatives and informal markets across the Global South.
+  </p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="#research">Explore our research</a>
+    <a class="btn-ghost" href="#join">Collaborate with us</a>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="stat-num">8+</div>
+      <div class="stat-label">Active research proposals across 4 continents</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$796K</div>
+      <div class="stat-label">In awarded funding (2022–2026)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Countries with active field collaborations</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Research pillars spanning ISE, AI & development</div>
+    </div>
+  </div>
+</div>
+
+<!-- THE QUESTION -->
+<section class="question-section" id="mission">
+  <div class="section-inner">
+    <div class="question-block">
+      <span class="eyebrow">The animating question</span>
+      <p class="question-mark">
+        When AI and automation enter an operation — a factory, a cooperative, a trading corridor — who gains <em>decision-making power</em> and who loses it?
+      </p>
+      <p class="question-sub">
+        This question runs through every project in AGORA Lab. The methods change — operations research, field experiments, multi-criteria decision analysis, management science. The question does not.
+      </p>
+      <div class="thread-list">
+        <div class="thread-item">
+          <div class="thread-dot"></div>
+          <p class="thread-text"><strong>Operations & management first.</strong> AGORA is grounded in industrial and systems engineering, operations management, and management science. AI is a tool we study — not the discipline we practice.</p>
+        </div>
+        <div class="thread-item">
+          <div class="thread-dot"></div>
+          <p class="thread-text"><strong>Applied over abstract.</strong> Every AGORA project has a field component, an industry partner, or a real decision-maker as a stakeholder. Methods serve problems, not the other way around.</p>
+        </div>
+        <div class="thread-item">
+          <div class="thread-dot"></div>
+          <p class="thread-text"><strong>Advanced methods, broader contexts.</strong> AGORA examines how modern operations management and manufacturing practices — Industry 5.0, AI-assisted decision-making, optimization, lean systems — perform across a wide range of organizational scales and settings, from advanced manufacturers to SMEs worldwide. The comparison between what works in well-resourced environments and what transfers to constrained ones is where the most generalizable and impactful knowledge is produced.</p>
+        </div>
+        <div class="thread-item">
+          <div class="thread-dot"></div>
+          <p class="thread-text"><strong>Industry 5.0 as the frame.</strong> Human-centricity and resilience over automation-first efficiency. A system that optimizes throughput while excluding workers is not a well-designed system.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars-section" id="research">
+  <div class="section-inner">
+    <span class="eyebrow">Research pillars</span>
+    <h2 class="section-h">Four questions. <em>One lab.</em></h2>
+    <p class="section-p">AGORA's research spans operations management, manufacturing systems, industrial engineering, and development economics. It is structured around core questions rather than funding streams; each pillar representing a sustained line of questions supported by active projects, field partnerships, and ongoing proposals.</p>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-letter">A</div>
+        <p class="pillar-name">Applied human–AI decision systems</p>
+        <p class="pillar-question">"How do managers and workers make better operational decisions when AI is a partner — especially in high-mix, low-volume environments where data is scarce and stakes are high?"</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag">NSF GOALI</span>
+          <span class="pillar-tag">HMLV manufacturing</span>
+          <span class="pillar-tag">Operations management</span>
+          <span class="pillar-tag">Amazon Research Awards</span>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-letter">G</div>
+        <p class="pillar-name">Global South operations & cooperative management</p>
+        <p class="pillar-question">"What does technology adoption and operational management actually look like inside artisanal cooperatives, small manufacturers, and platform sellers in resource-constrained economies?"</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag">Global South</span>
+          <span class="pillar-tag">Agency Fund</span>
+          <span class="pillar-tag">J-PAL MIT</span>
+          <span class="pillar-tag">Schmidt Foundation</span>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-letter">O</div>
+        <p class="pillar-name">Operations research & manufacturing systems</p>
+        <p class="pillar-question">"How do we design, optimize, and manage industrial and manufacturing systems — facility layouts, logistics networks, recycling operations, production planning — when real-world constraints dominate?"</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag">NOIC glass recycling</span>
+          <span class="pillar-tag">Facility layout</span>
+          <span class="pillar-tag">Production management</span>
+          <span class="pillar-tag">MCDM</span>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-letter">R</div>
+        <p class="pillar-name">Regional development & trade management</p>
+        <p class="pillar-question">"How does digital infrastructure change physical trade flows, labor markets, and economic agency in emerging economies — and what management frameworks help SMEs capture that value?"</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag">Hinrich Foundation</span>
+          <span class="pillar-tag">AfCFTA</span>
+          <span class="pillar-tag">Tohoku Forum 2028</span>
+          <span class="pillar-tag">Emerging economies</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVE PROJECTS -->
+<section class="projects-section">
+  <div class="section-inner">
+    <span class="eyebrow">Active research portfolio</span>
+    <h2 class="section-h">Work in progress, <em>not just in print.</em></h2>
+    <p class="section-p">AGORA Lab is intentionally a lab in formation. Its portfolio consists of active, real-world projects; developed with partners in operations management, manufacturing, and development economics; either underway in the field or currently under review. We share this work transparently, prioritizing its significance over its funding status.</p>
+    <div class="projects-list">
+      <div class="project-row">
+        <div class="project-pillar">Pillar A</div>
+        <div>
+          <p class="project-title">Human–AI decision policies for data-scarce HMLV manufacturing</p>
+          <p class="project-sub">NSF GOALI · Co-PI: Yarder Manufacturing, Toledo, Ohio</p>
+        </div>
+        <span class="project-status status-prep">Under preparation</span>
+      </div>
+      <div class="project-row">
+        <div class="project-pillar">Pillar A</div>
+        <div>
+          <p class="project-title">Empowering SME sellers through human-AI decision support in platform economies</p>
+          <p class="project-sub">Amazon Research Awards · Spring 2026</p>
+        </div>
+        <span class="project-status status-prep">Under preparation</span>
+      </div>
+      <div class="project-row">
+        <div class="project-pillar">Pillar A</div>
+        <div>
+          <p class="project-title">Human–machine collaboration for Industry 5.0 supply chains</p>
+          <p class="project-sub">NSF Manufacturing Systems Integration (PD-23-229Y)</p>
+        </div>
+        <span class="project-status status-prep">Under preparation</span>
+      </div>
+      <div class="project-row">
+        <div class="project-pillar">Pillar G</div>
+        <div>
+          <p class="project-title">AI advisory tools in agricultural cooperatives — Global South contexts</p>
+          <p class="project-sub">The Agency Fund · Spring 2026</p>
+        </div>
+        <span class="project-status status-active">Active field</span>
+      </div>
+      <div class="project-row">
+        <div class="project-pillar">Pillar G</div>
+        <div>
+          <p class="project-title">AI, jobs & skills: evidence from SMEs in emerging economies</p>
+          <p class="project-sub">Schmidt Foundation AI at Work · J-PAL MIT</p>
+        </div>
+        <span class="project-status status-prep">Under preparation</span>
+      </div>
+      <div class="project-row">
+        <div class="project-pillar">Pillar G</div>
+        <div>
+          <p class="project-title">Human-centric AI adoption barriers in manufacturing SMEs — marginalized communities</p>
+          <p class="project-sub">Active field collaboration · MENA region · Ongoing</p>
+        </div>
+        <span class="project-status status-active">Active field</span>
+      </div>
+      <div class="project-row">
+        <div class="project-pillar">Pillar O</div>
+        <div>
+          <p class="project-title">Glass recycling operations optimization — manufacturer & supply chain levels</p>
+          <p class="project-sub">Northwest Ohio Innovation Consortium (NOIC)</p>
+        </div>
+        <span class="project-status status-prep">Under preparation</span>
+      </div>
+      <div class="project-row">
+        <div class="project-pillar">Pillar O</div>
+        <div>
+          <p class="project-title">Super Rapids Next Generation Workforce Development</p>
+          <p class="project-sub">BGSU Office of Workforce Transformation (OWT) · Co-PI · Awarded $764,000</p>
+        </div>
+        <span class="project-status status-awarded">Awarded</span>
+      </div>
+      <div class="project-row">
+        <div class="project-pillar">Pillar R</div>
+        <div>
+          <p class="project-title">Digital trade facilitation & goods flows across AfCFTA member states</p>
+          <p class="project-sub">Hinrich Foundation</p>
+        </div>
+        <span class="project-status status-prep">Under preparation</span>
+      </div>
+      <div class="project-row">
+        <div class="project-pillar">Pillar R</div>
+        <div>
+          <p class="project-title">Resilient supply chains for heritage economies in post-disaster regions</p>
+          <p class="project-sub">Tohoku Forum for Creativity Thematic Program 2028</p>
+        </div>
+        <span class="project-status status-prep">Under preparation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIELD NETWORK -->
+<section class="field-section" id="field">
+  <div class="section-inner">
+    <span class="eyebrow">Field network</span>
+    <h2 class="section-h" style="color:#FAF0E6;">This lab is not <em>only</em> in Bowling Green.</h2>
+    <p class="section-p">AGORA's research happens where the questions live. Our field sites span manufacturing corridors, smallholder economies, and emerging trade systems.</p>
+    <div class="field-grid">
+      <div class="field-site">
+        <div class="field-region">Northwest Ohio · USA</div>
+        <div class="field-title">Manufacturing & Circular Systems</div>
+        <div class="field-desc">HMLV manufacturing operations, workforce transformation, glass recycling system optimization, AGV deployment and warehouse management. Active industry partnerships with manufacturing firms and the NOIC consortium in the Great Lakes region.</div>
+      </div>
+      <div class="field-site">
+        <div class="field-region">MENA Region</div>
+        <div class="field-title">SME Operations & Cooperative Management</div>
+        <div class="field-desc">Studying AI adoption barriers, technology transition management, and operational resilience in manufacturing SMEs and artisanal cooperatives. Focus on how Industry 5.0 principles apply in resource-constrained and informally organized settings.</div>
+      </div>
+      <div class="field-site">
+        <div class="field-region">Global South · Various</div>
+        <div class="field-title">Cooperative & Agricultural Operations</div>
+        <div class="field-desc">Field research on decision-support systems for agricultural cooperatives, smallholder supply chain management, and AI advisory tools in low-data environments. Active proposals with the Agency Fund and Schmidt Foundation.</div>
+      </div>
+      <div class="field-site">
+        <div class="field-region">Gulf Region · UAE</div>
+        <div class="field-title">Agri-Food Supply Chain Management</div>
+        <div class="field-desc">Prior awarded research ($32K) on decision-support systems for agri-food supply chain management, warehousing and distribution optimization for small and medium-scale producers in resource-constrained settings.</div>
+      </div>
+      <div class="field-site">
+        <div class="field-region">AfCFTA Corridor · Africa</div>
+        <div class="field-title">Trade Management & Digital Facilitation</div>
+        <div class="field-desc">Examining how digital trade facilitation tools affect physical goods flows, logistics operations, and labor outcomes across AfCFTA member states. Proposed research with the Hinrich Foundation on trade management and economic agency.</div>
+      </div>
+      <div class="field-site">
+        <div class="field-region">Sendai · Japan</div>
+        <div class="field-title">Post-Disaster Supply Chain Resilience</div>
+        <div class="field-desc">Proposed Tohoku Forum for Creativity Thematic Program 2028: resilient supply chain and operations management for heritage economies in post-disaster regions, integrating circularity and urban logistics frameworks.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY JOIN -->
+<section class="join-section" id="join">
+  <div class="section-inner">
+    <span class="eyebrow">Why join AGORA</span>
+    <h2 class="section-h">Three doors into <em>the lab.</em></h2>
+    <p class="section-p">AGORA Lab operates as a network rather than a physical space. It offers three distinct pathways for engagement, tailored to students, industry partners, and international research collaborators, each defined by a unique form of participation and contribution.</p>
+    <div class="join-grid">
+      <div class="join-card">
+        <div class="join-num">01</div>
+        <p class="join-title">Graduate students & researchers</p>
+        <p class="join-text">AGORA is looking for students who want to do research that goes somewhere — into manufacturing plants, cooperative management offices, and trade ministries, not just journals. We offer field experience across multiple continents, an international network spanning MENA, sub-Saharan Africa, and East Asia, and direct industry exposure through active partnerships in the Great Lakes region. If you are drawn to industrial engineering, operations management, manufacturing systems, or development economics — and want your dissertation to matter outside academia — this is your lab.</p>
+        <br>
+        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="/cdn-cgi/l/email-protection#74071519150634161307015a111001">Apply to join →</a>
+      </div>
+      <div class="join-card">
+        <div class="join-num">02</div>
+        <p class="join-title">Industry & manufacturing partners</p>
+        <p class="join-text">AGORA works with manufacturers, logistics operators, and operations managers who want rigorous analytical work — not generic consulting. We bring operations research methods, optimization modeling, field experiment design, and management science expertise. What we need from industry partners: data access, site access, and co-PI participation in funded research. Current partners include manufacturing firms and innovation consortia in Northwest Ohio. We are actively seeking new industry co-investigators for NSF GOALI and NOIC proposals in manufacturing systems, circular economy operations, and human-AI integration.</p>
+        <br>
+        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="/cdn-cgi/l/email-protection#3043515d514270525743451e555445">Explore partnership →</a>
+      </div>
+      <div class="join-card">
+        <div class="join-num">03</div>
+        <p class="join-title">International academic collaborators</p>
+        <p class="join-text">AGORA is actively building a network of researchers across the Global South, MENA, sub-Saharan Africa, and Southeast Asia who study operations management, manufacturing systems, industrial engineering, and development economics. We welcome partners in three forms: field access and co-authorship on proposals targeting marginalized or under-researched economies; co-supervision of doctoral students across institutions; and participation as named collaborators on international grant proposals including the Tohoku Forum 2028, Hinrich Foundation, and Schmidt Foundation submissions. We acknowledge the asymmetries of international academic collaboration honestly — AGORA is a genuine partner, not an extractive research relationship.</p>
+        <br>
+        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="/cdn-cgi/l/email-protection#097a6864687b496b6e7a7c276c6d7c">Start a conversation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="team">
+  <div class="section-inner">
+    <span class="eyebrow">People</span>
+    <h2 class="section-h">Contributors, <em>not credentials.</em></h2>
+    <p class="section-p">At AGORA Lab, individuals are defined by their contributions to the core research questions rather than by formal titles. The lab is purposefully small and highly engaged, emphasizing hands-on, field-based work over distant observation.</p>
+    <div class="team-grid">
+      <div class="team-card" style="grid-column: span 2; display:flex; gap:1.5rem; align-items:flex-start; padding:2rem;">
+        <div class="team-initials" style="width:64px; height:64px; flex-shrink:0; font-size:20px;">SHA</div>
+        <div>
+          <p class="team-name" style="font-size:16px;">Sara Haddou Amar, PhD</p>
+          <p class="team-role" style="font-size:13px;">Founder & Principal Investigator · AGORA Lab</p>
+          <p class="team-inst">Assistant Professor, Industrial & Logistics Engineering · Bowling Green State University · Program Coordinator, Systems Engineering</p>
+          <p style="font-size:13px; color:var(--text-2); margin-top:10px; line-height:1.7;">Sara's research sits at the intersection of operations management, manufacturing systems engineering, human-machine collaboration, and economic development. She examines how technology adoption — particularly AI and digital tools — reshapes operations, labor, and organizational outcomes in resource-constrained and SME-dominated economies across the Global South. Her work spans facility layout and optimization, artisanal cooperative resilience, human-centric AI adoption barriers in manufacturing, and logistics system design in low-data environments. She is committed to operations research and management science that is applied, global, and honest about the communities it serves.</p>
+          <div style="display:flex; gap:12px; margin-top:12px;">
+            <a class="team-link" href="https://sites.google.com/view/saraamar" target="_blank">Personal site</a>
+            <a class="team-link" href="/cdn-cgi/l/email-protection#64170509051624060317114a010011">Email</a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-initials">HM</div>
+        <p class="team-name">H. Mouhib</p>
+        <p class="team-role">Co-author · Industry 5.0 & cobot research</p>
+        <p class="team-inst">Active collaboration on human factors and manufacturing transition</p>
+      </div>
+      <div class="team-card">
+        <div class="team-initials">KB</div>
+        <p class="team-name">K. Benchouk</p>
+        <p class="team-role">Co-author · AI in STEM education</p>
+        <p class="team-inst">Springer book chapter collaborator on generative AI in higher education</p>
+      </div>
+      <div class="team-card">
+        <div class="team-initials">YK</div>
+        <p class="team-name">Y. Kessou</p>
+        <p class="team-role">Research collaborator · Decarbonization</p>
+        <p class="team-inst">IISE 2026 — industrial readiness for decarbonization in emerging economies</p>
+      </div>
+      <div class="team-card">
+        <div class="team-initials">+</div>
+        <p class="team-name">Open positions</p>
+        <p class="team-role">MS & PhD students welcome</p>
+        <p class="team-inst">Seeking students with interest in ISE, AI in operations, and development economics</p>
+        <a class="team-link" href="/cdn-cgi/l/email-protection#691a0804081b290b0e1a1c470c0d1c">Inquire →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners-section">
+  <div class="section-inner">
+    <span class="eyebrow">Institutional partners</span>
+    <h2 class="section-h">A network that is <em>already real.</em></h2>
+    <p class="section-p">These are not aspirational affiliations. Each represents an active or directly prior research relationship — a co-authored paper, a field collaboration, a grant proposal, or a funded project.</p>
+    <div class="partner-grid">
+      <div class="partner-card"><div class="partner-type">Academic · MENA Region</div><div class="partner-name">Mohammed VI Polytechnic University (UM6P)</div><div class="partner-loc">Active research collaboration · AI adoption & industrial systems</div></div>
+      <div class="partner-card"><div class="partner-type">Academic · MENA Region</div><div class="partner-name">Ecole Centrale Casablanca</div><div class="partner-loc">Ecole Centrale Group research network · Manufacturing & systems</div></div>
+      <div class="partner-card"><div class="partner-type">Academic · MENA Region</div><div class="partner-name">Université Ibn Toufaïl</div><div class="partner-loc">PhD Advisory Program member · Industrial engineering</div></div>
+      <div class="partner-card"><div class="partner-type">Industry · Great Lakes Region</div><div class="partner-name">Yarder Manufacturing</div><div class="partner-loc">Toledo, Ohio · NSF GOALI co-PI partner · HMLV systems</div></div>
+      <div class="partner-card"><div class="partner-type">Consortium · Great Lakes Region</div><div class="partner-name">Northwest Ohio Innovation Consortium (NOIC)</div><div class="partner-loc">Northwest Ohio · Circular economy & recycling operations</div></div>
+      <div class="partner-card"><div class="partner-type">Home Institution</div><div class="partner-name">Bowling Green State University</div><div class="partner-loc">School of Engineering · Industrial & Logistics Engineering</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <span class="eyebrow">Get involved</span>
+    <h2 class="section-h" style="color:#FAF0E6; max-width:500px;">The agora is a place people <em>choose to enter.</em></h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-who">For prospective students</div>
+        <div class="contact-title">Join the lab as MS or PhD researcher</div>
+        <div class="contact-text">Tell us about your research interests, your background in ISE, operations management, or economics, and what draws you to AGORA's research agenda. Include your CV and a one-paragraph statement of research interest.</div>
+        <a class="contact-link" href="/cdn-cgi/l/email-protection#25564448445765474256500b4041501a5650474f4046511864626a77640569444705c7a5b10575574a56554046514c53400576515041404b51"><span class="__cf_email__" data-cfemail="3340525e524173515440461d565746">[email&#160;protected]</span></a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-who">For industry partners</div>
+        <div class="contact-title">Co-develop a funded research project</div>
+        <div class="contact-text">We are actively preparing NSF GOALI and NOIC proposals and looking for industry co-investigators. If you operate manufacturing, logistics, or circular economy systems and want rigorous analytical partnership, we want to talk.</div>
+        <a class="contact-link" href="/cdn-cgi/l/email-protection#cab9aba7abb88aa8adb9bfe4afaebff5b9bfa8a0afa9bef78b8d85988bea86aba8ea284a5eea83a4aebfb9beb8b3ea9aabb8bea4afb8b9a2a3ba"><span class="__cf_email__" data-cfemail="fa899b979b88ba989d898fd49f9e8f">[email&#160;protected]</span></a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-who">For international collaborators</div>
+        <div class="contact-title">Join a proposal or field collaboration</div>
+        <div class="contact-text">We welcome collaborators from across the Global South, MENA, Africa, and Southeast Asia for the Hinrich Foundation, Schmidt Foundation, and Tohoku Forum 2028 proposals. Respond in French, Arabic, or English — all welcomed equally.</div>
+        <a class="contact-link" href="/cdn-cgi/l/email-protection#15667478746755777266603b7071602a6660777f7076612854525a47543559747735f79581355c7b6170677b74617c7a7b747935567a797974777a6774617c7a7b"><span class="__cf_email__" data-cfemail="7605171b1704361411050358131203">[email&#16
