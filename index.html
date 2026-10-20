@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AGORA Lab ” Applied Global Operations Research & Analytics</title>
+<title>AGORA Lab — Applied Global Operations Research & Analytics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -36,7 +36,7 @@ body {
   overflow-x: hidden;
 }
 
-/* â”€â”€â”€ NAV â”€â”€â”€ */
+/* ─── NAV ─── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: rgba(26,18,10,0.97);
@@ -76,13 +76,15 @@ nav {
 }
 .nav-link.cta:hover { background: #A0724A; }
 
-/* â”€â”€â”€ HERO â”€â”€â”€ */
+/* ─── HERO ─── */
 .hero {
   min-height: 100vh;
   background: var(--terra-dark);
   display: flex; flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 4rem 5rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 6rem 4rem 5rem;
   position: relative;
   overflow: hidden;
 }
@@ -97,6 +99,7 @@ nav {
   font-size: 11px; letter-spacing: 0.15em;
   text-transform: uppercase; color: var(--terra-mid);
   margin-bottom: 2rem;
+  text-align: center;
   animation: fadeUp 0.8s ease both;
 }
 .hero-h1 {
@@ -104,18 +107,21 @@ nav {
   font-size: clamp(3rem, 7vw, 6.5rem);
   font-weight: 300; line-height: 1.05;
   color: #FAF0E6; letter-spacing: -0.02em;
-  max-width: 900px;
+  max-width: 980px;
+  text-align: center;
   animation: fadeUp 0.8s 0.1s ease both;
 }
 .hero-h1 em { font-style: italic; color: var(--terra-mid); }
 .hero-sub {
   font-size: 17px; color: rgba(196,149,106,0.75);
-  max-width: 540px; line-height: 1.75;
+  max-width: 560px; line-height: 1.75;
   margin-top: 2rem;
+  text-align: center;
   animation: fadeUp 0.8s 0.2s ease both;
 }
 .hero-actions {
   display: flex; gap: 14px; margin-top: 3rem;
+  justify-content: center;
   animation: fadeUp 0.8s 0.3s ease both;
 }
 .btn-primary {
@@ -142,7 +148,7 @@ nav {
   animation: fadeUp 1s 0.6s ease both;
 }
 
-/* â”€â”€â”€ SECTIONS â”€â”€â”€ */
+/* ─── SECTIONS ─── */
 section { padding: 6rem 4rem; }
 .section-inner { max-width: 1100px; margin: 0 auto; }
 .eyebrow {
@@ -163,7 +169,7 @@ section { padding: 6rem 4rem; }
   line-height: 1.8; max-width: 620px;
 }
 
-/* â”€â”€â”€ STATS STRIP â”€â”€â”€ */
+/* ─── STATS STRIP ─── */
 .stats-strip {
   background: var(--terra-deep);
   padding: 3.5rem 4rem;
@@ -183,7 +189,7 @@ section { padding: 6rem 4rem; }
 }
 .stat-label { font-size: 12px; color: var(--terra-mid); line-height: 1.5; }
 
-/* â”€â”€â”€ THE QUESTION â”€â”€â”€ */
+/* ─── THE QUESTION ─── */
 .question-section { background: var(--terra-light); }
 .question-block {
   max-width: 800px; margin: 0 auto;
@@ -218,7 +224,7 @@ section { padding: 6rem 4rem; }
 .thread-text { font-size: 14px; color: var(--text-2); line-height: 1.65; }
 .thread-text strong { color: var(--text); font-weight: 500; }
 
-/* â”€â”€â”€ PILLARS â”€â”€â”€ */
+/* ─── PILLARS ─── */
 .pillars-section { background: white; }
 .pillars-grid {
   display: grid;
@@ -259,7 +265,7 @@ section { padding: 6rem 4rem; }
 }
 
 
-/* â”€â”€â”€ MANGO SECTION â”€â”€â”€ */
+/* ─── MANGO SECTION ─── */
 .mango-section { background: #0F0A06; overflow: hidden; padding: 0; }
 .mango-hero {
   min-height: 420px;
@@ -341,7 +347,7 @@ section { padding: 6rem 4rem; }
 .mango-mini-card-label { font-size: 9px; color: rgba(196,149,106,0.38); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
 .mango-mini-card-val { font-size: 13px; color: rgba(250,240,230,0.8); font-weight: 500; line-height: 1.35; }
 
-/* â”€â”€â”€ FIELD MAP TEXT â”€â”€â”€ */
+/* ─── FIELD MAP TEXT ─── */
 .field-section { background: var(--terra-dark); }
 .field-section .section-h { color: #FAF0E6; }
 .field-section .section-p { color: rgba(196,149,106,0.8); }
@@ -374,7 +380,7 @@ section { padding: 6rem 4rem; }
   font-size: 12px; color: rgba(196,149,106,0.6); line-height: 1.65;
 }
 
-/* â”€â”€â”€ PROJECTS â”€â”€â”€ */
+/* ─── PROJECTS ─── */
 .projects-section { background: var(--terra-pale); }
 .projects-list {
   margin-top: 3rem;
@@ -414,7 +420,7 @@ section { padding: 6rem 4rem; }
 .status-prep { background: var(--terra-light); color: var(--terra-deep); }
 .status-development { background: #F3F0F8; color: #4A3470; }
 
-/* â”€â”€â”€ WHY JOIN â”€â”€â”€ */
+/* ─── WHY JOIN ─── */
 .join-section { background: white; }
 .join-grid {
   display: grid;
@@ -438,7 +444,7 @@ section { padding: 6rem 4rem; }
 .join-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
 .join-text { font-size: 13px; color: var(--text-2); line-height: 1.7; }
 
-/* â”€â”€â”€ TEAM â”€â”€â”€ */
+/* ─── TEAM ─── */
 .team-section { background: var(--terra-pale); }
 .team-grid {
   display: grid;
@@ -474,7 +480,7 @@ section { padding: 6rem 4rem; }
 }
 .team-link:hover { color: var(--terra-deep); }
 
-/* â”€â”€â”€ NEWS & RECOGNITION â”€â”€â”€ */
+/* ─── NEWS & RECOGNITION ─── */
 .news-section { background: white; }
 .news-grid {
   display: grid;
@@ -503,7 +509,7 @@ section { padding: 6rem 4rem; }
 .news-body { font-size: 13px; color: var(--text-2); line-height: 1.7; }
 .news-source { font-size: 11px; color: var(--terra); letter-spacing: 0.04em; }
 
-/* â”€â”€â”€ PARTNERS â”€â”€â”€ */
+/* ─── PARTNERS ─── */
 .partners-section { background: var(--terra-light); }
 .partner-grid {
   display: grid;
@@ -523,7 +529,7 @@ section { padding: 6rem 4rem; }
 .partner-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
 .partner-loc { font-size: 12px; color: var(--text-3); }
 
-/* â”€â”€â”€ CONTACT â”€â”€â”€ */
+/* ─── CONTACT ─── */
 .contact-section { background: var(--terra-dark); }
 .contact-section .eyebrow { color: var(--terra-mid); opacity: 0.6; }
 .contact-section .section-h { color: #FAF0E6; }
@@ -558,7 +564,7 @@ section { padding: 6rem 4rem; }
 }
 .contact-link:hover { color: #FAF0E6; border-bottom-color: rgba(196,149,106,0.6); }
 
-/* â”€â”€â”€ FOOTER â”€â”€â”€ */
+/* ─── FOOTER ─── */
 footer {
   background: #0D0906;
   padding: 2.5rem 4rem;
@@ -578,13 +584,13 @@ footer {
 }
 .footer-link:hover { color: rgba(196,149,106,0.7); }
 
-/* â”€â”€â”€ ANIMATIONS â”€â”€â”€ */
+/* ─── ANIMATIONS ─── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* â”€â”€â”€ RESPONSIVE â”€â”€â”€ */
+/* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
   nav { padding: 0 1.5rem; }
   .nav-links { display: none; }
@@ -626,10 +632,10 @@ footer {
   <div class="hero-bg-pattern"></div>
   <div class="hero-tag">Applied Global Operations Research & Analytics · BGSU School of Engineering</div>
   <h1 class="hero-h1">
-    Where <em>industrial systems</em><br>meet the world they<br>actually operate in.
+    Where <em>industrial systems</em> meet the world they actually operate in.
   </h1>
   <p class="hero-sub">
-    AGORA Lab studies operations management, manufacturing systems, and human decision-making in the economies and communities most research overlooks ” from Midwestern factory floors to smallholder cooperatives and informal markets across the Global South.
+    AGORA Lab studies operations management, manufacturing systems, and human decision-making in the economies and communities most research overlooks — from Midwestern factory floors to smallholder cooperatives and informal markets across the Global South.
   </p>
   <div class="hero-actions">
     <a class="btn-primary" href="#research">Explore our research</a>
@@ -647,7 +653,7 @@ footer {
     </div>
     <div class="stat">
       <div class="stat-num">$806K</div>
-      <div class="stat-label">In awarded funding (2022“2026)</div>
+      <div class="stat-label">In awarded funding (2022–2026)</div>
     </div>
     <div class="stat">
       <div class="stat-num">6</div>
@@ -666,15 +672,15 @@ footer {
     <div class="question-block">
       <span class="eyebrow">The animating question</span>
       <p class="question-mark">
-        When AI and automation enter an operation, a factory, a cooperative, a trading corridor ... who gains <em>decision-making power</em> and who loses it?
+        When AI and automation enter an operation — a factory, a cooperative, a trading corridor — who gains <em>decision-making power</em> and who loses it?
       </p>
       <p class="question-sub">
-        This question runs through every project in AGORA Lab. The methods change ” operations research, field experiments, multi-criteria decision analysis, management science. The question does not.
+        This question runs through every project in AGORA Lab. The methods change — operations research, field experiments, multi-criteria decision analysis, management science. The question does not.
       </p>
       <div class="thread-list">
         <div class="thread-item">
           <div class="thread-dot"></div>
-          <p class="thread-text"><strong>Operations & management first.</strong> AGORA is grounded in industrial and systems engineering, operations management, and management science. AI is a tool we study ” not the discipline we practice.</p>
+          <p class="thread-text"><strong>Operations & management first.</strong> AGORA is grounded in industrial and systems engineering, operations management, and management science. AI is a tool we study — not the discipline we practice.</p>
         </div>
         <div class="thread-item">
           <div class="thread-dot"></div>
@@ -682,7 +688,7 @@ footer {
         </div>
         <div class="thread-item">
           <div class="thread-dot"></div>
-          <p class="thread-text"><strong>Advanced methods, broader contexts.</strong> AGORA examines how modern operations management and manufacturing practices ” Industry 5.0, AI-assisted decision-making, optimization, lean systems ” perform across a wide range of organizational scales and settings, from advanced manufacturers to SMEs worldwide. The comparison between what works in well-resourced environments and what transfers to constrained ones is where the most generalizable and impactful knowledge is produced.</p>
+          <p class="thread-text"><strong>Advanced methods, broader contexts.</strong> AGORA examines how modern operations management and manufacturing practices — Industry 5.0, AI-assisted decision-making, optimization, lean systems — perform across a wide range of organizational scales and settings, from advanced manufacturers to SMEs worldwide. The comparison between what works in well-resourced environments and what transfers to constrained ones is where the most generalizable and impactful knowledge is produced.</p>
         </div>
         <div class="thread-item">
           <div class="thread-dot"></div>
@@ -702,8 +708,8 @@ footer {
     <div class="pillars-grid">
       <div class="pillar-card">
         <div class="pillar-letter">A</div>
-        <p class="pillar-name">Applied human“AI decision systems</p>
-        <p class="pillar-question">"How do managers and workers make better operational decisions when AI is a partner ” especially in high-mix, low-volume environments where data is scarce and stakes are high?"</p>
+        <p class="pillar-name">Applied human–AI decision systems</p>
+        <p class="pillar-question">"How do managers and workers make better operational decisions when AI is a partner — especially in high-mix, low-volume environments where data is scarce and stakes are high?"</p>
         <div class="pillar-tags">
           <span class="pillar-tag">NSF GOALI</span>
           <span class="pillar-tag">HMLV manufacturing</span>
@@ -725,7 +731,7 @@ footer {
       <div class="pillar-card">
         <div class="pillar-letter">O</div>
         <p class="pillar-name">Operations research & manufacturing systems</p>
-        <p class="pillar-question">"How do we design, optimize, and manage industrial and manufacturing systems ” facility layouts, logistics networks, recycling operations, production planning ” when real-world constraints dominate?"</p>
+        <p class="pillar-question">"How do we design, optimize, and manage industrial and manufacturing systems — facility layouts, logistics networks, recycling operations, production planning — when real-world constraints dominate?"</p>
         <div class="pillar-tags">
           <span class="pillar-tag">NOIC glass recycling</span>
           <span class="pillar-tag">Facility layout</span>
@@ -736,7 +742,7 @@ footer {
       <div class="pillar-card">
         <div class="pillar-letter">R</div>
         <p class="pillar-name">Regional development & trade management</p>
-        <p class="pillar-question">"How does digital infrastructure change physical trade flows, labor markets, and economic agency in emerging economies ” and what management frameworks help SMEs capture that value?"</p>
+        <p class="pillar-question">"How does digital infrastructure change physical trade flows, labor markets, and economic agency in emerging economies — and what management frameworks help SMEs capture that value?"</p>
         <div class="pillar-tags">
           <span class="pillar-tag">Hinrich Foundation</span>
           <span class="pillar-tag">AfCFTA</span>
@@ -746,7 +752,7 @@ footer {
       <div class="pillar-card">
         <div class="pillar-letter">E</div>
         <p class="pillar-name">Engineering education & simulation-based learning</p>
-        <p class="pillar-question">"How do game-based simulations and entrepreneurial thinking tools build systems-reasoning capacity in engineering students ” and can those same tools be adapted to reach children earlier and more equitably?"</p>
+        <p class="pillar-question">"How do game-based simulations and entrepreneurial thinking tools build systems-reasoning capacity in engineering students — and can those same tools be adapted to reach children earlier and more equitably?"</p>
         <div class="pillar-tags">
           <span class="pillar-tag">KEEN Fellowship</span>
           <span class="pillar-tag">MANGO game</span>
@@ -763,15 +769,15 @@ footer {
   <div class="section-inner">
     <span class="eyebrow">Active research portfolio</span>
     <h2 class="section-h">Work in progress, <em>not just in print.</em></h2>
-    <p class="section-p">AGORA Lab is intentionally a lab in formation. Its portfolio reflects an active and evolving research agenda ” awarded fellowships and grants, live field collaborations, and projects in development seeking the right funding vehicle. We share this transparently, because momentum matters more than polish.</p>
+    <p class="section-p">AGORA Lab is intentionally a lab in formation. Its portfolio reflects an active and evolving research agenda — awarded fellowships and grants, live field collaborations, and projects in development seeking the right funding vehicle. We share this transparently, because momentum matters more than polish.</p>
     <div class="projects-list">
 
-      <!-- â”€â”€ AWARDED â”€â”€ -->
+      <!-- ── AWARDED ── -->
       <div class="project-row">
         <div class="project-pillar">Education</div>
         <div>
-          <p class="project-title">MANGO ” Manufacturing & Operations Game</p>
-          <p class="project-sub">KEEN Engineering Unleashed Fellowship · Kern Family Foundation · $10,000 · 2026 · Browser-based competitive simulation integrating production planning, MRP, supplier selection &amp; disruption management ” deployed in ISE undergraduate courses at BGSU · published on EngineeringUnleashed.com · One of 30 fellows from 23 institutions (&lt;10% acceptance rate)</p>
+          <p class="project-title">MANGO — Manufacturing & Operations Game</p>
+          <p class="project-sub">KEEN Engineering Unleashed Fellowship · Kern Family Foundation · $10,000 · 2026 · Browser-based competitive simulation integrating production planning, MRP, supplier selection &amp; disruption management — deployed in ISE undergraduate courses at BGSU · published on EngineeringUnleashed.com · One of 30 fellows from 23 institutions (&lt;10% acceptance rate)</p>
         </div>
         <span class="project-status status-fellow">Awarded</span>
       </div>
@@ -779,7 +785,7 @@ footer {
         <div class="project-pillar">Pillar O</div>
         <div>
           <p class="project-title">Super Rapids Next Generation Workforce Development</p>
-          <p class="project-sub">BGSU Office of Workforce Transformation · Co-PI · $764,000 · 2024“2026 · Advanced manufacturing workforce development with Northwest Ohio industry partners</p>
+          <p class="project-sub">BGSU Office of Workforce Transformation · Co-PI · $764,000 · 2024–2026 · Advanced manufacturing workforce development with Northwest Ohio industry partners</p>
         </div>
         <span class="project-status status-awarded">Awarded</span>
       </div>
@@ -787,51 +793,51 @@ footer {
         <div class="project-pillar">Policy</div>
         <div>
           <p class="project-title">ISC-INGSA Training Programme on Science Advice to Policy</p>
-          <p class="project-sub">International Science Council & INGSA · 5-module programme · Modules 1“2 active July 2026 · Science-policy interface, evidence-informed policymaking</p>
+          <p class="project-sub">International Science Council & INGSA · 5-module programme · Modules 1–2 active July 2026 · Science-policy interface, evidence-informed policymaking</p>
         </div>
         <span class="project-status status-active">Active</span>
       </div>
 
-      <!-- â”€â”€ EDUCATION: MANGO FAMILY â”€â”€ -->
+      <!-- ── EDUCATION: MANGO FAMILY ── -->
       <div class="project-row" style="border-left: 3px solid var(--terra); padding-left: 1rem;">
         <div class="project-pillar" style="color:var(--terra-deep); font-weight:600;">Education</div>
         <div>
-          <p class="project-title">miniMANGO ” Children's Cooperative Simulation for Learning Equity</p>
-          <p class="project-sub">Extension of MANGO for ages 8“12 · AI-assisted cooperative decision-making · Cross-regional field study · Game Design Document &amp; paper prototype in active development Â· Proposal submitted August 2026 Â· Further details to be shared upon project confirmation</p>
+          <p class="project-title">miniMANGO — Children's Cooperative Simulation for Learning Equity</p>
+          <p class="project-sub">Extension of MANGO for ages 8–12 · AI-assisted cooperative decision-making · Cross-regional field study · Game Design Document &amp; paper prototype in active development · Proposal submitted August 2026 · Further details to be shared upon project confirmation</p>
         </div>
         <span class="project-status status-prep">Submitted</span>
       </div>
 
-      <!-- â”€â”€ SUBMITTED â”€â”€ -->
+      <!-- ── SUBMITTED ── -->
       <div class="project-row">
         <div class="project-pillar">Pillar A</div>
         <div>
-          <p class="project-title">NSF CAREER ” Decision Intelligence in Data-Scarce Environments</p>
-          <p class="project-sub">Lead PI Â· Human“AI collaborative operations in US SME manufacturing & global supply chains Â· Submitted July 2026</p>
+          <p class="project-title">NSF CAREER — Decision Intelligence in Data-Scarce Environments</p>
+          <p class="project-sub">Lead PI · Human–AI collaborative operations in US SME manufacturing & global supply chains · Submitted July 2026</p>
         </div>
         <span class="project-status status-prep">Submitted</span>
       </div>
       <div class="project-row">
         <div class="project-pillar">Pillar A</div>
         <div>
-          <p class="project-title">Closing the Last Mile of AI Adoption ” Human-AI Decision Support for SME Platform Sellers</p>
-          <p class="project-sub">Amazon Research Awards Â· Lead PI Â· Field experiment Â· Submitted May 2026</p>
+          <p class="project-title">Safe by Design? Emergent Risk in Multi-Agent Inventory Systems — Simulation Study</p>
+          <p class="project-sub">Amazon Research Awards (ARA) · Lead PI · Simulation-first study of emergent risk with heterogeneous safety thresholds · Target submission: November 4, 2026</p>
         </div>
-        <span class="project-status status-prep">Submitted</span>
+        <span class="project-status status-development">In preparation</span>
       </div>
       <div class="project-row">
         <div class="project-pillar">Pillar R</div>
         <div>
           <p class="project-title">Digital Trade Facilitation & Physical Goods Flows Across AfCFTA Member States</p>
-          <p class="project-sub">Hinrich Foundation Fellowship Â· Lead PI Â· Submitted 2026</p>
+          <p class="project-sub">Hinrich Foundation Fellowship · Lead PI · Submitted 2026</p>
         </div>
         <span class="project-status status-prep">Submitted</span>
       </div>
       <div class="project-row">
         <div class="project-pillar">Pillar G</div>
         <div>
-          <p class="project-title">J-PAL Invited Researcher ” Morocco Innovation & Evaluation Lab (MEL)</p>
-          <p class="project-sub">J-PAL MENA / UM6P / Harvard Center for International Development Â· Application submitted August 2026</p>
+          <p class="project-title">J-PAL Self-Nominated Researcher — Morocco Innovation & Evaluation Lab (MEL)</p>
+          <p class="project-sub">J-PAL MENA / UM6P / Harvard Center for International Development · Application submitted August 2026</p>
         </div>
         <span class="project-status status-prep">Submitted</span>
       </div>
@@ -839,74 +845,85 @@ footer {
         <div class="project-pillar">Leadership</div>
         <div>
           <p class="project-title">AAUW Liberatory Leadership Lab Fellowship</p>
-          <p class="project-sub">American Association of University Women Â· Leadership Development Fellowship with Capstone Project Grant (up to $2,000) Â· Submitted August 2026</p>
+          <p class="project-sub">American Association of University Women · Leadership Development Fellowship with Capstone Project Grant (up to $2,000) · Submitted August 2026</p>
+        </div>
+        <span class="project-status status-prep">Submitted</span>
+      </div>
+      <div class="project-row">
+        <div class="project-pillar">Pillar A</div>
+        <div>
+          <p class="project-title">Humanity AI — Fair Signal: Students Auditing AI That Evaluates Them</p>
+          <p class="project-sub">Humanity AI · Lead PI · Collaborators: Dr. Sonia Chacko, Dr. Mikhail Shilov, Engineering Society Club at BGSU · Submitted October 2026</p>
         </div>
         <span class="project-status status-prep">Submitted</span>
       </div>
 
-      <!-- â”€â”€ IN PREPARATION â”€â”€ -->
+      <!-- ── IN PREPARATION ── -->
+
       <div class="project-row">
         <div class="project-pillar">Pillar G</div>
         <div>
-          <p class="project-title">Fulbright Flex Award ” AI, Task Restructuring & Worker Agency in SME Labor Markets</p>
-          <p class="project-sub">Lead PI Â· Comparative field study Â· MENA region Â· Proposed host: Mohammed VI Polytechnic University Â· Application in preparation 2026</p>
+          <p class="project-title">Russell Sage Foundation — Future of Work · Automation or Augmentation?</p>
+          <p class="project-sub">Lead PI · AI Exposure, Changing Skill Demand, and Earnings Opportunities for U.S. Manufacturing Workers · Collaborator: Dr. Amanda Cook (Economics, BGSU) · Submitted October 2026</p>
         </div>
-        <span class="project-status status-development">In preparation</span>
+        <span class="project-status status-prep">Submitted</span>
       </div>
+
       <div class="project-row">
-        <div class="project-pillar">Pillar G</div>
+        <div class="project-pillar">Pillar A</div>
         <div>
-          <p class="project-title">Russell Sage Foundation ” Future of Work Â· AI-Driven Task Restructuring & Worker Agency</p>
-          <p class="project-sub">Lead PI Â· LOI in preparation Â· SME labor markets</p>
-        </div>
-        <span class="project-status status-development">In preparation</span>
-      </div>
-      <div class="project-row">
-        <div class="project-pillar">Pillar G</div>
-        <div>
-          <p class="project-title">GitLab Foundation ” AI for Economic Opportunity Fund</p>
-          <p class="project-sub">Lead PI Â· AI adoption & worker outcomes in SME-dominated economies Â· Application in preparation</p>
+          <p class="project-title">Human–AI Decision Policies for Data-Scarce HMLV Manufacturing</p>
+          <p class="project-sub">NSF GOALI · Co-PI: Yarder Manufacturing, Toledo, Ohio · Under preparation</p>
         </div>
         <span class="project-status status-development">In preparation</span>
       </div>
       <div class="project-row">
         <div class="project-pillar">Pillar A</div>
         <div>
-          <p class="project-title">Human“AI Decision Policies for Data-Scarce HMLV Manufacturing</p>
-          <p class="project-sub">NSF GOALI Â· Co-PI: Yarder Manufacturing, Toledo, Ohio Â· Under preparation</p>
+          <p class="project-title">NSF AMDO — Circular Manufacturing: Integrated Production & Reverse Logistics</p>
+          <p class="project-sub">NSF Advanced Manufacturing, Design, and Operations · Lead PI · Multi-Objective Facility Layout Optimization for Circular Manufacturing · Proposal in preparation, 2027</p>
         </div>
         <span class="project-status status-development">In preparation</span>
       </div>
       <div class="project-row">
         <div class="project-pillar">Pillar A</div>
         <div>
-          <p class="project-title">Human“Machine Collaboration for Industry 5.0 Supply Chains</p>
-          <p class="project-sub">NSF Manufacturing Systems Integration (PD-23-229Y) Â· Lead PI Â· Under preparation</p>
+          <p class="project-title">Human–Machine Collaboration for Industry 5.0 Supply Chains</p>
+          <p class="project-sub">NSF Manufacturing Systems Integration (PD-23-229Y) · Lead PI · Under preparation</p>
         </div>
         <span class="project-status status-development">In preparation</span>
       </div>
       <div class="project-row">
         <div class="project-pillar">Pillar O</div>
         <div>
-          <p class="project-title">Glass Recycling Operations Optimization ” Manufacturer & Supply Chain Levels</p>
-          <p class="project-sub">Northwest Ohio Innovation Consortium (NOIC) Â· Under preparation</p>
+          <p class="project-title">Glass Recycling Operations Optimization — Manufacturer & Supply Chain Levels</p>
+          <p class="project-sub">Northwest Ohio Innovation Consortium (NOIC) · Under preparation</p>
         </div>
         <span class="project-status status-development">In preparation</span>
       </div>
-      <!-- â”€â”€ ACTIVE FIELD â”€â”€ -->
       <div class="project-row">
         <div class="project-pillar">Pillar G</div>
         <div>
-          <p class="project-title">Human-Centric AI Adoption Barriers in Manufacturing SMEs ” Marginalized Communities</p>
-          <p class="project-sub">UM6P / J-PAL MEL Â· MENA region Â· Active field collaboration Â· 2025“Ongoing</p>
+          <p class="project-title">IHS — The Judgment Dividend: What Workers Lose When AI Decides</p>
+          <p class="project-sub">Institute for Humane Studies · Lead PI · Worker judgment, AI automation, and what is lost and valued when decisions shift to algorithmic systems · In preparation</p>
+        </div>
+        <span class="project-status status-development">In preparation</span>
+      </div>
+
+      <!-- ── ACTIVE FIELD ── -->
+      <div class="project-row">
+        <div class="project-pillar">Pillar G</div>
+        <div>
+          <p class="project-title">Human-Centric AI Adoption Barriers in Manufacturing SMEs — Marginalized Communities</p>
+          <p class="project-sub">UM6P / J-PAL MEL · MENA region · Active field collaboration · 2025–Ongoing</p>
         </div>
         <span class="project-status status-active">Active field</span>
       </div>
       <div class="project-row">
         <div class="project-pillar">Pillar G</div>
         <div>
-          <p class="project-title">AI Advisory Tools in Agricultural Cooperatives ” Global South</p>
-          <p class="project-sub">Field research ongoing Â· Seeking funding vehicle Â· Active collaboration</p>
+          <p class="project-title">AI Advisory Tools in Agricultural Cooperatives — Global South</p>
+          <p class="project-sub">Field research ongoing · Seeking funding vehicle · Active collaboration</p>
         </div>
         <span class="project-status status-active">Active field</span>
       </div>
@@ -935,7 +952,7 @@ footer {
           <div class="mango-coming-dot"></div>
           In development &mdash; web app coming soon
         </div>
-        <span class="mango-status-note">Paper prototype &amp; pilot sessions active Â· browser-based version in progress</span>
+        <span class="mango-status-note">Paper prototype &amp; pilot sessions active · browser-based version in progress</span>
       </div>
       <div class="mango-actions">
         <a class="btn-mango-primary" href="https://engineeringunleashed.com/card/6115" target="_blank">View on Engineering Unleashed &rarr;</a>
@@ -1066,7 +1083,7 @@ footer {
     <p class="section-p">AGORA's research happens where the questions live. Our field sites span manufacturing corridors, smallholder economies, and emerging trade systems.</p>
     <div class="field-grid">
       <div class="field-site">
-        <div class="field-region">Northwest Ohio Â· USA</div>
+        <div class="field-region">Northwest Ohio · USA</div>
         <div class="field-title">Manufacturing & Circular Systems</div>
         <div class="field-desc">HMLV manufacturing operations, workforce transformation, glass recycling system optimization, AGV deployment and warehouse management. Active industry partnerships with manufacturing firms and the NOIC consortium in the Great Lakes region.</div>
       </div>
@@ -1076,17 +1093,17 @@ footer {
         <div class="field-desc">Studying AI adoption barriers, technology transition management, and operational resilience in manufacturing SMEs and artisanal cooperatives. Focus on how Industry 5.0 principles apply in resource-constrained and informally organized settings.</div>
       </div>
       <div class="field-site">
-        <div class="field-region">Global South Â· Various</div>
+        <div class="field-region">Global South · Various</div>
         <div class="field-title">Cooperative & Agricultural Operations</div>
         <div class="field-desc">Field research on decision-support systems for agricultural cooperatives, smallholder supply chain management, and AI advisory tools in low-data environments. Active fieldwork with proposals in development for future funding cycles.</div>
       </div>
       <div class="field-site">
-        <div class="field-region">Gulf Region Â· UAE</div>
+        <div class="field-region">Gulf Region · UAE</div>
         <div class="field-title">Agri-Food Supply Chain Management</div>
         <div class="field-desc">Prior awarded research ($32K) on decision-support systems for agri-food supply chain management, warehousing and distribution optimization for small and medium-scale producers in resource-constrained settings.</div>
       </div>
       <div class="field-site">
-        <div class="field-region">AfCFTA Corridor Â· Africa</div>
+        <div class="field-region">AfCFTA Corridor · Africa</div>
         <div class="field-title">Trade Management & Digital Facilitation</div>
         <div class="field-desc">Examining how digital trade facilitation tools affect physical goods flows, logistics operations, and labor outcomes across AfCFTA member states. Proposed research with the Hinrich Foundation on trade management and economic agency.</div>
       </div>
@@ -1104,23 +1121,23 @@ footer {
       <div class="join-card">
         <div class="join-num">01</div>
         <p class="join-title">Graduate students & researchers</p>
-        <p class="join-text">AGORA is looking for students who want to do research that goes somewhere ” into manufacturing plants, cooperative management offices, and trade ministries, not just journals. We offer field experience across multiple continents, an international network spanning MENA, sub-Saharan Africa, and East Asia, and direct industry exposure through active partnerships in the Great Lakes region. If you are drawn to industrial engineering, operations management, manufacturing systems, or development economics ” and want your dissertation to matter outside academia ” this is your lab.</p>
+        <p class="join-text">AGORA is looking for students who want to do research that goes somewhere — into manufacturing plants, cooperative management offices, and trade ministries, not just journals. We offer field experience across multiple continents, an international network spanning MENA, sub-Saharan Africa, and East Asia, and direct industry exposure through active partnerships in the Great Lakes region. If you are drawn to industrial engineering, operations management, manufacturing systems, or development economics — and want your dissertation to matter outside academia — this is your lab.</p>
         <br>
-        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="/cdn-cgi/l/email-protection#74071519150634161307015a111001">Apply to join â†’</a>
+        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="/cdn-cgi/l/email-protection#74071519150634161307015a111001">Apply to join →</a>
       </div>
       <div class="join-card">
         <div class="join-num">02</div>
         <p class="join-title">Industry & manufacturing partners</p>
-        <p class="join-text">AGORA works with manufacturers, logistics operators, and operations managers who want rigorous analytical work ” not generic consulting. We bring operations research methods, optimization modeling, field experiment design, and management science expertise. What we need from industry partners: data access, site access, and co-PI participation in funded research. Current partners include manufacturing firms and innovation consortia in Northwest Ohio. We are actively seeking new industry co-investigators for NSF GOALI and NOIC proposals in manufacturing systems, circular economy operations, and human-AI integration.</p>
+        <p class="join-text">AGORA works with manufacturers, logistics operators, and operations managers who want rigorous analytical work — not generic consulting. We bring operations research methods, optimization modeling, field experiment design, and management science expertise. What we need from industry partners: data access, site access, and co-PI participation in funded research. Current partners include manufacturing firms and innovation consortia in Northwest Ohio. We are actively seeking new industry co-investigators for NSF GOALI and NOIC proposals in manufacturing systems, circular economy operations, and human-AI integration.</p>
         <br>
-        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="/cdn-cgi/l/email-protection#3043515d514270525743451e555445">Explore partnership â†’</a>
+        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="/cdn-cgi/l/email-protection#3043515d514270525743451e555445">Explore partnership →</a>
       </div>
       <div class="join-card">
         <div class="join-num">03</div>
         <p class="join-title">International academic collaborators</p>
-        <p class="join-text">AGORA is actively building a network of researchers across the Global South, MENA, sub-Saharan Africa, and Southeast Asia who study operations management, manufacturing systems, industrial engineering, and development economics. We welcome partners in three forms: field access and co-authorship on proposals targeting marginalized or under-researched economies; co-supervision of doctoral students across institutions; and participation as named collaborators on international grant proposals including the Hinrich Foundation and future development economics submissions. We acknowledge the asymmetries of international academic collaboration honestly ” AGORA is a genuine partner, not an extractive research relationship.</p>
+        <p class="join-text">AGORA is actively building a network of researchers across the Global South, MENA, sub-Saharan Africa, and Southeast Asia who study operations management, manufacturing systems, industrial engineering, and development economics. We welcome partners in three forms: field access and co-authorship on proposals targeting marginalized or under-researched economies; co-supervision of doctoral students across institutions; and participation as named collaborators on international grant proposals including the Hinrich Foundation and future development economics submissions. We acknowledge the asymmetries of international academic collaboration honestly — AGORA is a genuine partner, not an extractive research relationship.</p>
         <br>
-        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="/cdn-cgi/l/email-protection#097a6864687b496b6e7a7c276c6d7c">Start a conversation â†’</a>
+        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="/cdn-cgi/l/email-protection#097a6864687b496b6e7a7c276c6d7c">Start a conversation →</a>
       </div>
     </div>
   </div>
@@ -1137,9 +1154,9 @@ footer {
         <div class="team-initials" style="width:64px; height:64px; flex-shrink:0; font-size:20px;">SHA</div>
         <div>
           <p class="team-name" style="font-size:16px;">Sara Haddou Amar, PhD</p>
-          <p class="team-role" style="font-size:13px;">Founder & Principal Investigator Â· AGORA Lab</p>
-          <p class="team-inst">Assistant Professor, Industrial & Logistics Engineering Â· Bowling Green State University Â· Program Coordinator, Systems Engineering</p>
-          <p style="font-size:13px; color:var(--text-2); margin-top:10px; line-height:1.7;">Sara's research sits at the intersection of operations management, manufacturing systems engineering, human-machine collaboration, and economic development. She examines how technology adoption ” particularly AI and digital tools ” reshapes operations, labor, and organizational outcomes in resource-constrained and SME-dominated economies across the Global South. Her work spans facility layout and optimization, artisanal cooperative resilience, human-centric AI adoption barriers in manufacturing, and logistics system design in low-data environments. She is committed to operations research and management science that is applied, global, and honest about the communities it serves.</p>
+          <p class="team-role" style="font-size:13px;">Founder & Principal Investigator · AGORA Lab</p>
+          <p class="team-inst">Assistant Professor, Industrial & Logistics Engineering · Bowling Green State University · Program Coordinator, Systems Engineering</p>
+          <p style="font-size:13px; color:var(--text-2); margin-top:10px; line-height:1.7;">Sara's research sits at the intersection of operations management, manufacturing systems engineering, human-machine collaboration, and economic development. She examines how technology adoption — particularly AI and digital tools — reshapes operations, labor, and organizational outcomes in resource-constrained and SME-dominated economies across the Global South. Her work spans facility layout and optimization, artisanal cooperative resilience, human-centric AI adoption barriers in manufacturing, and logistics system design in low-data environments. She is committed to operations research and management science that is applied, global, and honest about the communities it serves.</p>
           <div style="display:flex; gap:12px; margin-top:12px;">
             <a class="team-link" href="https://sites.google.com/view/saraamar" target="_blank">Personal site</a>
             <a class="team-link" href="/cdn-cgi/l/email-protection#64170509051624060317114a010011">Email</a>
@@ -1149,27 +1166,39 @@ footer {
       <div class="team-card">
         <div class="team-initials">HM</div>
         <p class="team-name">H. Mouhib</p>
-        <p class="team-role">Co-author Â· Industry 5.0 & cobot research</p>
+        <p class="team-role">Co-author · Industry 5.0 & cobot research</p>
         <p class="team-inst">Active collaboration on human factors and manufacturing transition</p>
       </div>
       <div class="team-card">
         <div class="team-initials">KB</div>
         <p class="team-name">K. Benchouk</p>
-        <p class="team-role">Co-author Â· AI in STEM education</p>
+        <p class="team-role">Co-author · AI in STEM education</p>
         <p class="team-inst">Springer book chapter collaborator on generative AI in higher education</p>
       </div>
       <div class="team-card">
         <div class="team-initials">YK</div>
         <p class="team-name">Y. Kessou</p>
-        <p class="team-role">Research collaborator Â· Decarbonization</p>
-        <p class="team-inst">IISE 2026 ” industrial readiness for decarbonization in emerging economies</p>
+        <p class="team-role">Research collaborator · Decarbonization</p>
+        <p class="team-inst">IISE 2026 — industrial readiness for decarbonization in emerging economies</p>
+      </div>
+      <div class="team-card">
+        <div class="team-initials">GK</div>
+        <p class="team-name">Glory Nkatha Kirea</p>
+        <p class="team-role">Graduate Assistant · Teaching Assistant</p>
+        <p class="team-inst">School of Engineering · College of Engineering &amp; Innovation · Bowling Green State University · MS Thesis: Trust Calibration Under Data Scarcity: Reliance on AI Recommendations in Supply Chain and Logistics Decision-Making</p>
+      </div>
+      <div class="team-card">
+        <div class="team-initials">OD</div>
+        <p class="team-name">Oussama Dribel</p>
+        <p class="team-role">PhD Candidate · Research Collaborator</p>
+        <p class="team-inst">Ecole Centrale Casablanca · Co-author on urban &amp; circular-reverse logistics research · Active collaboration on operations in urban environments</p>
       </div>
       <div class="team-card">
         <div class="team-initials">+</div>
         <p class="team-name">Open positions</p>
         <p class="team-role">MS & PhD students welcome</p>
         <p class="team-inst">Seeking students with interest in ISE, AI in operations, and development economics</p>
-        <a class="team-link" href="/cdn-cgi/l/email-protection#691a0804081b290b0e1a1c470c0d1c">Inquire â†’</a>
+        <a class="team-link" href="/cdn-cgi/l/email-protection#691a0804081b290b0e1a1c470c0d1c">Inquire →</a>
       </div>
     </div>
   </div>
@@ -1180,7 +1209,7 @@ footer {
   <div class="section-inner">
     <span class="eyebrow">News & recognition</span>
     <h2 class="section-h">The lab is <em>in motion.</em></h2>
-    <p class="section-p">AGORA Lab is a lab in active formation ” awards, training, partnerships, and research developments as they happen. Updated as the work evolves.</p>
+    <p class="section-p">AGORA Lab is a lab in active formation — awards, training, partnerships, and research developments as they happen. Updated as the work evolves.</p>
     <div class="news-grid">
 
       <div class="news-card">
@@ -1188,9 +1217,9 @@ footer {
           <div class="news-date">July 2026</div>
           <span class="news-badge nbadge-award">Fellowship Awarded</span>
         </div>
-        <div class="news-title">2026 Engineering Unleashed Fellow ” MANGO Game Â· Kern Family Foundation</div>
-        <div class="news-body">Named a 2026 Engineering Unleashed Fellow by the Kern Family Foundation KEEN Network for the development of MANGO (Manufacturing & Operations Game) ” a browser-based competitive simulation for undergraduate ISE students integrating production planning, MRP, supplier selection, and supply chain disruption management. One of 30 fellows selected from 23 institutions, representing fewer than 10% of faculty development participants, peer-nominated and reviewed by an independent committee of past fellows. Accompanied by a $10,000 grant and formal institutional recognition to BGSU's president, provost, and dean. MANGO is publicly available on EngineeringUnleashed.com. Fellowship cohort convenes October 2026 in Waukesha, WI.</div>
-        <div class="news-source">Kern Family Foundation Â· KEEN Â· Engineering Unleashed</div>
+        <div class="news-title">2026 Engineering Unleashed Fellow — MANGO Game · Kern Family Foundation</div>
+        <div class="news-body">Named a 2026 Engineering Unleashed Fellow by the Kern Family Foundation KEEN Network for the development of MANGO (Manufacturing & Operations Game) — a browser-based competitive simulation for undergraduate ISE students integrating production planning, MRP, supplier selection, and supply chain disruption management. One of 30 fellows selected from 23 institutions, representing fewer than 10% of faculty development participants, peer-nominated and reviewed by an independent committee of past fellows. Accompanied by a $10,000 grant and formal institutional recognition to BGSU's president, provost, and dean. MANGO is publicly available on EngineeringUnleashed.com. Fellowship cohort convenes October 2026 in Waukesha, WI.</div>
+        <div class="news-source">Kern Family Foundation · KEEN · Engineering Unleashed</div>
       </div>
 
       <div class="news-card">
@@ -1198,22 +1227,29 @@ footer {
           <div class="news-date">August 2026</div>
           <span class="news-badge nbadge-training">Proposal Submitted</span>
         </div>
-        <div class="news-title">miniMANGO ” Children's Learning Equity Simulation Â· Proposal Submitted</div>
-        <div class="news-body">Building directly on MANGO, AGORA Lab has submitted a fellowship proposal for miniMANGO ” a cooperative simulation game adapted for children aged 8“12 that investigates how AI-assisted decision support affects systems thinking, learning persistence, and equity across diverse global contexts. A Game Design Document specifying game mechanics, cooperative economic settings, and AI hint architecture is complete. A paper prototype and interactive browser-based prototype are in active development. Further details will be shared upon project confirmation.</div>
-        <div class="news-source">AGORA Lab Â· BGSU Â· Submitted August 2026</div>
-      </div>
-        <div class="news-body">Selected to participate in the International Science Council and International Network for Governmental Science Advice joint training programme on evidence-informed policy-making. The five-module programme covers the science-policy interface, public policy dynamics, and how researchers can engage effectively with policy processes. Modules 1 and 2 begin July 6, 2026, with further modules through August and September.</div>
-        <div class="news-source">International Science Council Â· INGSA</div>
+        <div class="news-title">miniMANGO — Children's Learning Equity Simulation · Proposal Submitted</div>
+        <div class="news-body">Building directly on MANGO, AGORA Lab has submitted a fellowship proposal for miniMANGO — a cooperative simulation game adapted for children aged 8–12 that investigates how AI-assisted decision support affects systems thinking, learning persistence, and equity across diverse global contexts. A Game Design Document specifying game mechanics, cooperative economic settings, and AI hint architecture is complete. A paper prototype and interactive browser-based prototype are in active development. Further details will be shared upon project confirmation.</div>
+        <div class="news-source">AGORA Lab · BGSU · Submitted August 2026</div>
       </div>
 
       <div class="news-card">
         <div class="news-card-top">
-          <div class="news-date">2022 “ Present</div>
+          <div class="news-date">July 2026</div>
+          <span class="news-badge nbadge-training">Training Programme</span>
+        </div>
+        <div class="news-title">ISC & INGSA — Evidence-Informed Policy Programme</div>
+        <div class="news-body">Selected to participate in the International Science Council and International Network for Governmental Science Advice joint training programme on evidence-informed policy-making. The five-module programme covers the science-policy interface, public policy dynamics, and how researchers can engage effectively with policy processes. Modules 1 and 2 active July 2026, with further modules through August–September.</div>
+        <div class="news-source">International Science Council · INGSA</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-card-top">
+          <div class="news-date">2022 – Present</div>
           <span class="news-badge nbadge-grant">Awarded Grant</span>
         </div>
-        <div class="news-title">Super Rapids Next Generation Workforce Development ” $764,000</div>
+        <div class="news-title">Super Rapids Next Generation Workforce Development — $764,000</div>
         <div class="news-body">Co-PI on awarded BGSU Office of Workforce Transformation grant supporting workforce development in advanced manufacturing. Active project with regional industry partners in Northwest Ohio.</div>
-        <div class="news-source">BGSU Office of Workforce Transformation Â· OWT</div>
+        <div class="news-source">BGSU Office of Workforce Transformation · OWT</div>
       </div>
 
       <div class="news-card">
@@ -1221,9 +1257,9 @@ footer {
           <div class="news-date">July 2026</div>
           <span class="news-badge nbadge-training">Proposal Submitted</span>
         </div>
-        <div class="news-title">NSF CAREER Award ” Submitted July 2026</div>
-        <div class="news-body">Submitted NSF CAREER proposal: "Decision Intelligence in Data-Scarce Environments: Foundational Frameworks for Human“AI Collaborative Operations in US SME Manufacturing and Global Supply Chains." The NSF CAREER Award is the most prestigious recognition for early-career faculty who exemplify the role of teacher-scholars.</div>
-        <div class="news-source">National Science Foundation Â· Lead PI</div>
+        <div class="news-title">NSF CAREER Award — Submitted July 2026</div>
+        <div class="news-body">Submitted NSF CAREER proposal: "Decision Intelligence in Data-Scarce Environments: Foundational Frameworks for Human–AI Collaborative Operations in US SME Manufacturing and Global Supply Chains." The NSF CAREER Award is the most prestigious recognition for early-career faculty who exemplify the role of teacher-scholars.</div>
+        <div class="news-source">National Science Foundation · Lead PI</div>
       </div>
 
       <div class="news-card">
@@ -1231,7 +1267,7 @@ footer {
           <div class="news-date">June 2026</div>
           <span class="news-badge nbadge-finalist">Conference Finalist</span>
         </div>
-        <div class="news-title">IISE 2026 Best Paper Finalist ” Sustainable Development Division</div>
+        <div class="news-title">IISE 2026 Best Paper Finalist — Sustainable Development Division</div>
         <div class="news-body">Co-authored paper "Assessing Industrial Readiness for Decarbonization: A Study of Moroccan Companies" (Kessou, Y., Amar, S., et al.) selected as a finalist for the 2026 IISE Annual Conference Best Paper Track Competition in the Sustainable Development Division.</div>
         <div class="news-source">IISE Annual Conference & Expo 2026</div>
       </div>
@@ -1241,9 +1277,39 @@ footer {
           <div class="news-date">2026</div>
           <span class="news-badge nbadge-training">Executive Education</span>
         </div>
-        <div class="news-title">Yale School of Management ” Supply Chain, AI & Resilience</div>
-        <div class="news-body">Completed executive education programme at Yale School of Management: "Supply Chain Management: AI, Sustainability, and Resilience Strategies" ” integrating frontier AI applications into supply chain strategy and resilience frameworks.</div>
-        <div class="news-source">Yale School of Management Â· Executive Education</div>
+        <div class="news-title">Yale School of Management — Supply Chain, AI & Resilience</div>
+        <div class="news-body">Completed executive education programme at Yale School of Management: "Supply Chain Management: AI, Sustainability, and Resilience Strategies" — integrating frontier AI applications into supply chain strategy and resilience frameworks.</div>
+        <div class="news-source">Yale School of Management · Executive Education</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-card-top">
+          <div class="news-date">October 2026</div>
+          <span class="news-badge nbadge-training">Proposal Submitted</span>
+        </div>
+        <div class="news-title">Russell Sage Foundation — Future of Work · Submitted October 2026</div>
+        <div class="news-body">Submitted proposal to the Russell Sage Foundation Future of Work program: "Automation or Augmentation? AI Exposure, Changing Skill Demand, and Earnings Opportunities for U.S. Manufacturing Workers." The project examines whether AI adoption augments or substitutes for worker judgment in U.S. manufacturing, using job-posting data (Lightcast), occupational task measures (O*NET), and worker earnings (CPS-ORG) in a continuous-exposure Difference-in-Differences design. Collaborator: Dr. Amanda Cook (Economics, BGSU).</div>
+        <div class="news-source">Russell Sage Foundation · Lead PI</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-card-top">
+          <div class="news-date">October 2026</div>
+          <span class="news-badge nbadge-training">Proposal Submitted</span>
+        </div>
+        <div class="news-title">Humanity AI — Fair Signal: Students Auditing and Governing AI · Submitted October 2026</div>
+        <div class="news-body">Submitted grant proposal to Humanity AI for "Fair Signal: Students Auditing and Governing the AI That Evaluates Them" — a project examining how students can critically audit and govern AI-driven evaluation systems. Collaborators: Dr. Sonia Chacko, Dr. Mikhail Shilov, and the Engineering Society Club at BGSU.</div>
+        <div class="news-source">Humanity AI · Lead PI · BGSU</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-card-top">
+          <div class="news-date">2024 – Present</div>
+          <span class="news-badge nbadge-award">Community Engagement</span>
+        </div>
+        <div class="news-title">AHA STEM Goes RED — American Heart Association · 3rd Year Volunteer</div>
+        <div class="news-body">Continuing volunteer participation in the American Heart Association's STEM Goes RED event — a hands-on STEM education and cardiovascular health awareness programme for young students. 2026 marks a third consecutive year of participation since 2024, reinforcing AGORA Lab's commitment to community-facing engineering education and outreach.</div>
+        <div class="news-source">American Heart Association · STEM Goes RED · BGSU</div>
       </div>
 
     </div>
@@ -1255,14 +1321,14 @@ footer {
   <div class="section-inner">
     <span class="eyebrow">Institutional partners</span>
     <h2 class="section-h">A network that is <em>already real.</em></h2>
-    <p class="section-p">These are not aspirational affiliations. Each represents an active or directly prior research relationship ” a co-authored paper, a field collaboration, a grant proposal, or a funded project.</p>
+    <p class="section-p">These are not aspirational affiliations. Each represents an active or directly prior research relationship — a co-authored paper, a field collaboration, a grant proposal, or a funded project.</p>
     <div class="partner-grid">
-      <div class="partner-card"><div class="partner-type">Academic Â· MENA Region</div><div class="partner-name">Mohammed VI Polytechnic University (UM6P)</div><div class="partner-loc">Active research collaboration Â· AI adoption & industrial systems</div></div>
-      <div class="partner-card"><div class="partner-type">Academic Â· MENA Region</div><div class="partner-name">Ecole Centrale Casablanca</div><div class="partner-loc">Ecole Centrale Group research network Â· Manufacturing & systems</div></div>
-      <div class="partner-card"><div class="partner-type">Academic Â· MENA Region</div><div class="partner-name">UniversitÃ© Ibn ToufaÃ¯l</div><div class="partner-loc">PhD Advisory Program member Â· Industrial engineering</div></div>
-      <div class="partner-card"><div class="partner-type">Industry Â· Great Lakes Region</div><div class="partner-name">Yarder Manufacturing</div><div class="partner-loc">Toledo, Ohio Â· NSF GOALI co-PI partner Â· HMLV systems</div></div>
-      <div class="partner-card"><div class="partner-type">Consortium Â· Great Lakes Region</div><div class="partner-name">Northwest Ohio Innovation Consortium (NOIC)</div><div class="partner-loc">Northwest Ohio Â· Circular economy & recycling operations</div></div>
-      <div class="partner-card"><div class="partner-type">Home Institution</div><div class="partner-name">Bowling Green State University</div><div class="partner-loc">School of Engineering Â· Industrial & Logistics Engineering</div></div>
+      <div class="partner-card"><div class="partner-type">Academic · MENA Region</div><div class="partner-name">Mohammed VI Polytechnic University (UM6P)</div><div class="partner-loc">Active research collaboration · AI adoption & industrial systems</div></div>
+      <div class="partner-card"><div class="partner-type">Academic · MENA Region</div><div class="partner-name">Ecole Centrale Casablanca</div><div class="partner-loc">Ecole Centrale Group research network · Manufacturing & systems</div></div>
+      <div class="partner-card"><div class="partner-type">Academic · MENA Region</div><div class="partner-name">Université Ibn Toufaïl</div><div class="partner-loc">PhD Advisory Program member · Industrial engineering</div></div>
+      <div class="partner-card"><div class="partner-type">Industry · Great Lakes Region</div><div class="partner-name">Yarder Manufacturing</div><div class="partner-loc">Toledo, Ohio · NSF GOALI co-PI partner · HMLV systems</div></div>
+      <div class="partner-card"><div class="partner-type">Consortium · Great Lakes Region</div><div class="partner-name">Northwest Ohio Innovation Consortium (NOIC)</div><div class="partner-loc">Northwest Ohio · Circular economy & recycling operations</div></div>
+      <div class="partner-card"><div class="partner-type">Home Institution</div><div class="partner-name">Bowling Green State University</div><div class="partner-loc">School of Engineering · Industrial & Logistics Engineering</div></div>
     </div>
   </div>
 </section>
@@ -1288,7 +1354,7 @@ footer {
       <div class="contact-card">
         <div class="contact-who">For international collaborators</div>
         <div class="contact-title">Join a proposal or field collaboration</div>
-        <div class="contact-text">We welcome collaborators from across the Global South, MENA, Africa, and Southeast Asia for the Hinrich Foundation and future development economics proposals. Respond in French, Arabic, or English ” all welcomed equally.</div>
+        <div class="contact-text">We welcome collaborators from across the Global South, MENA, Africa, and Southeast Asia for the Hinrich Foundation and future development economics proposals. Respond in French, Arabic, or English — all welcomed equally.</div>
         <a class="contact-link" href="/cdn-cgi/l/email-protection#15667478746755777266603b7071602a6660777f7076612854525a47543559747735f79581355c7b6170677b74617c7a7b747935567a797974777a6774617c7a7b"><span class="__cf_email__" data-cfemail="7605171b1704361411050358131203">[email&#16
         </a>
       </div>
@@ -1299,7 +1365,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">AGORA Lab</div>
-  <div class="footer-text">Applied Global Operations Research & Analytics Â· Bowling Green State University Â· Perrysburg, Ohio</div>
+  <div class="footer-text">Applied Global Operations Research & Analytics · Bowling Green State University · Perrysburg, Ohio</div>
   <div class="footer-links">
     <a class="footer-link" href="https://sites.google.com/view/saraamar" target="_blank">Personal site</a>
     <a class="footer-link" href="mailto:samar@bgsu.edu">Contact</a>
@@ -1308,4 +1374,3 @@ footer {
 
 </body>
 </html>
-
