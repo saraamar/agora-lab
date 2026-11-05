@@ -584,6 +584,72 @@ footer {
 }
 .footer-link:hover { color: rgba(196,149,106,0.7); }
 
+/* ─── GAME NIGHT BANNER ─── */
+.game-night-banner {
+  background: linear-gradient(135deg, #C4622D 0%, #9E4A1E 100%);
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+.game-night-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    60deg,
+    rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px,
+    transparent 0, transparent 28px
+  );
+  pointer-events: none;
+}
+.gn-label {
+  font-size: 9px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(255,255,255,0.65);
+  margin-bottom: 4px;
+}
+.gn-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600;
+  color: #fff; line-height: 1.1;
+}
+.gn-details {
+  font-size: 13px; color: rgba(255,255,255,0.8);
+  margin-top: 4px; line-height: 1.6;
+}
+.gn-details strong { color: #fff; }
+.gn-cta {
+  margin-left: auto;
+  background: rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 4px;
+  padding: 10px 18px;
+  color: #fff;
+  font-size: 13px; font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+  position: relative;
+}
+.gn-cta:hover { background: rgba(255,255,255,0.25); }
+.gn-pulse {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: #FFD700;
+  border-radius: 50%;
+  margin-right: 8px;
+  animation: gnblink 1.4s ease-in-out infinite;
+  vertical-align: middle;
+}
+@keyframes gnblink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
 /* ─── ANIMATIONS ─── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(18px); }
@@ -635,7 +701,7 @@ footer {
     Where <em>industrial systems</em> meet the world they actually operate in.
   </h1>
   <p class="hero-sub">
-    AGORA Lab studies operations management, manufacturing systems, and human decision-making in the economies and communities most research overlooks, from Midwestern factory floors to smallholder cooperatives and informal markets across the Global South.
+    AGORA Lab studies operations management, manufacturing systems, and human decision-making in the economies and communities most research overlooks — from Midwestern factory floors to smallholder cooperatives and informal markets across the Global South.
   </p>
   <div class="hero-actions">
     <a class="btn-primary" href="#research">Explore our research</a>
@@ -675,7 +741,7 @@ footer {
         When AI and automation enter an operation, a factory, a cooperative, a trading corridor, who gains <em>decision-making power</em> and who loses it?
       </p>
       <p class="question-sub">
-        This question runs through every project in AGORA Lab. The methods change, operations research, field experiments, multi-criteria decision analysis, management science. The question does not.
+        This question runs through every project in AGORA Lab. The methods change — operations research, field experiments, multi-criteria decision analysis, management science. The question does not.
       </p>
       <div class="thread-list">
         <div class="thread-item">
@@ -709,7 +775,7 @@ footer {
       <div class="pillar-card">
         <div class="pillar-letter">A</div>
         <p class="pillar-name">Applied human–AI decision systems</p>
-        <p class="pillar-question">"How do managers and workers make better operational decisions when AI is a partner, especially in high-mix, low-volume environments where data is scarce and stakes are high?"</p>
+        <p class="pillar-question">"How do managers and workers make better operational decisions when AI is a partner — especially in high-mix, low-volume environments where data is scarce and stakes are high?"</p>
         <div class="pillar-tags">
           <span class="pillar-tag">NSF GOALI</span>
           <span class="pillar-tag">HMLV manufacturing</span>
@@ -731,7 +797,7 @@ footer {
       <div class="pillar-card">
         <div class="pillar-letter">O</div>
         <p class="pillar-name">Operations research & manufacturing systems</p>
-        <p class="pillar-question">"How do we design, optimize, and manage industrial and manufacturing systems, facility layouts, logistics networks, recycling operations, production planning, when real-world constraints dominate?"</p>
+        <p class="pillar-question">"How do we design, optimize, and manage industrial and manufacturing systems — facility layouts, logistics networks, recycling operations, production planning — when real-world constraints dominate?"</p>
         <div class="pillar-tags">
           <span class="pillar-tag">NOIC glass recycling</span>
           <span class="pillar-tag">Facility layout</span>
@@ -803,9 +869,9 @@ footer {
         <div class="project-pillar" style="color:var(--terra-deep); font-weight:600;">Education</div>
         <div>
           <p class="project-title">miniMANGO — Children's Cooperative Simulation for Learning Equity</p>
-          <p class="project-sub">Extension of MANGO for ages 8–12 · AI-assisted cooperative decision-making · Cross-regional field study · Game Design Document &amp; paper prototype in active development · Proposal submitted August 2026 · Further details to be shared upon project confirmation</p>
+          <p class="project-sub">Extension of MANGO for ages 8–12 · AI-assisted cooperative decision-making · Cross-regional field study · Game Design Document &amp; paper prototype complete · Concept under redevelopment — exploring new funding pathways and partnerships</p>
         </div>
-        <span class="project-status status-prep">Submitted</span>
+        <span class="project-status status-development">In development</span>
       </div>
 
       <!-- ── SUBMITTED ── -->
@@ -821,9 +887,9 @@ footer {
         <div class="project-pillar">Pillar A</div>
         <div>
           <p class="project-title">Safe by Design? Emergent Risk in Multi-Agent Inventory Systems — Simulation Study</p>
-          <p class="project-sub">Amazon Research Awards (ARA) · Lead PI · Simulation-first study of emergent risk with heterogeneous safety thresholds · Target submission: November 4, 2026</p>
+          <p class="project-sub">Amazon Research Awards (ARA) · Lead PI · Simulation-first study of emergent risk with heterogeneous safety thresholds · Submitted November 2026</p>
         </div>
-        <span class="project-status status-development">In preparation</span>
+        <span class="project-status status-prep">Submitted</span>
       </div>
       <div class="project-row">
         <div class="project-pillar">Pillar R</div>
@@ -957,6 +1023,20 @@ footer {
       <div class="mango-actions">
         <a class="btn-mango-primary" href="https://engineeringunleashed.com/card/6115" target="_blank">View on Engineering Unleashed &rarr;</a>
         <a class="btn-mango-ghost" href="mailto:samar@bgsu.edu?subject=MANGO Game - Early Access">Get notified when live</a>
+      </div>
+
+      <!-- GAME NIGHT BANNER -->
+      <div class="game-night-banner">
+        <div>
+          <div class="gn-label">Upcoming event &nbsp;·&nbsp; AGORA Lab</div>
+          <div class="gn-title"><span class="gn-pulse"></span>MANGO Game Night</div>
+          <div class="gn-details">
+            <strong>November 17 &nbsp;·&nbsp; 6:00 – 8:30 PM</strong><br>
+            E&amp;I 283 — AI &amp; VR Lab, College of Engineering and Innovation, BGSU<br>
+            Free to attend &nbsp;·&nbsp; Food &amp; refreshments provided
+          </div>
+        </div>
+        <a class="gn-cta" href="mailto:samar@bgsu.edu?subject=MANGO Game Night - RSVP">RSVP &rarr;</a>
       </div>
     </div>
     <div class="mango-hero-right">
@@ -1227,9 +1307,9 @@ footer {
           <div class="news-date">August 2026</div>
           <span class="news-badge nbadge-training">Proposal Submitted</span>
         </div>
-        <div class="news-title">miniMANGO — Children's Learning Equity Simulation · Proposal Submitted</div>
-        <div class="news-body">Building directly on MANGO, AGORA Lab has submitted a fellowship proposal for miniMANGO — a cooperative simulation game adapted for children aged 8–12 that investigates how AI-assisted decision support affects systems thinking, learning persistence, and equity across diverse global contexts. A Game Design Document specifying game mechanics, cooperative economic settings, and AI hint architecture is complete. A paper prototype and interactive browser-based prototype are in active development. Further details will be shared upon project confirmation.</div>
-        <div class="news-source">AGORA Lab · BGSU · Submitted August 2026</div>
+        <div class="news-title">miniMANGO — Children's Cooperative Simulation · In Development</div>
+        <div class="news-body">Building directly on MANGO, AGORA Lab is developing miniMANGO — a cooperative simulation game for children aged 8–12 that investigates how AI-assisted decision support shapes systems thinking, learning persistence, and equity across diverse global contexts. A Game Design Document specifying game mechanics, cooperative economic settings, and AI hint architecture is complete. The paper prototype is finished. The concept is currently under redevelopment as the team explores new funding pathways and partnerships.</div>
+        <div class="news-source">AGORA Lab · BGSU</div>
       </div>
 
       <div class="news-card">
