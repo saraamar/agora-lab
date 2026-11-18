@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Safety Research — AGORA Lab</title>
+<meta name="description" content="AGORA Lab's AI safety research: emergent risk in multi-agent AI systems, human oversight under data scarcity, and who keeps decision power when AI agents run real operations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --terra-dark: #1A120A;
+  --terra-deep: #3D1F0A;
+  --terra: #8B5E3C;
+  --terra-mid: #C4956A;
+  --terra-light: #F5EBE0;
+  --terra-pale: #FDF8F4;
+  --green-deep: #1E3A30;
+  --green: #2C4A3E;
+  --green-mid: #6B9E8A;
+  --text: #1A120A;
+  --text-2: #5C4033;
+  --text-3: #9E7B5A;
+  --border: rgba(139,94,60,0.12);
+  --border-2: rgba(139,94,60,0.25);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--terra-pale);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--terra); }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(26,18,10,0.97);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center;
+  padding: 0 2.5rem; height: 60px;
+  border-bottom: 1px solid rgba(196,149,106,0.15);
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-right: auto; }
+.nav-bars { display: flex; align-items: flex-end; gap: 3px; height: 20px; }
+.nav-bars span { width: 4px; border-radius: 1px; display: block; }
+.logo-wordmark { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #FAF0E6; letter-spacing: 0.06em; }
+.logo-sub { font-size: 11px; color: var(--terra-mid); letter-spacing: 0.12em; text-transform: uppercase; margin-left: 4px; }
+.nav-links { display: flex; }
+.nav-link {
+  font-size: 13px; color: rgba(196,149,106,0.7);
+  padding: 0 14px; height: 60px; display: flex; align-items: center;
+  text-decoration: none; border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s; letter-spacing: 0.02em;
+}
+.nav-link:hover { color: #FAF0E6; border-bottom-color: rgba(196,149,106,0.4); }
+.nav-link.cta {
+  background: var(--terra); color: #FAF0E6; border-radius: 4px;
+  margin-left: 12px; padding: 0 18px; font-weight: 500;
+  border-bottom: none; height: 36px; align-self: center;
+}
+.nav-link.cta:hover { background: #A0724A; }
+
+/* HERO */
+.hero {
+  background: var(--terra-dark);
+  min-height: 88vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; padding: 8rem 4rem 5rem; position: relative; overflow: hidden;
+}
+.hero-bg-pattern {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(196,149,106,0.03) 80px, rgba(196,149,106,0.03) 81px),
+    repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(196,149,106,0.03) 80px, rgba(196,149,106,0.03) 81px);
+}
+.hero-tag { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terra-mid); margin-bottom: 2rem; animation: fadeUp 0.8s ease both; }
+.hero-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 6.5vw, 5.8rem);
+  font-weight: 300; line-height: 1.05; color: #FAF0E6; letter-spacing: -0.02em;
+  max-width: 980px; animation: fadeUp 0.8s 0.1s ease both;
+}
+.hero-h1 em { font-style: italic; color: var(--terra-mid); }
+.hero-sub {
+  font-size: 17px; color: rgba(196,149,106,0.8); max-width: 640px; line-height: 1.75;
+  margin-top: 2rem; animation: fadeUp 0.8s 0.2s ease both;
+}
+.hero-actions { display: flex; gap: 14px; margin-top: 3rem; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.8s 0.3s ease both; }
+.btn-primary { background: var(--terra); color: #FAF0E6; padding: 13px 28px; border-radius: 3px; text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.02em; transition: background 0.2s; }
+.btn-primary:hover { background: #A0724A; }
+.btn-ghost { color: rgba(196,149,106,0.85); padding: 13px 28px; border-radius: 3px; text-decoration: none; font-size: 14px; border: 1px solid rgba(196,149,106,0.3); transition: border-color 0.2s, color 0.2s; }
+.btn-ghost:hover { border-color: rgba(196,149,106,0.6); color: #C4956A; }
+
+/* SUMMARY STRIP (30-second read for reviewers) */
+.summary-strip { background: var(--terra-deep); padding: 3rem 4rem; }
+.summary-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+.summary-item { border-left: 2px solid rgba(196,149,106,0.3); padding-left: 1.25rem; }
+.summary-k { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--terra-mid); margin-bottom: 8px; }
+.summary-v { font-size: 14px; color: #FAF0E6; line-height: 1.6; }
+
+/* SECTIONS */
+section { padding: 6rem 4rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--terra); margin-bottom: 1.25rem; display: block; }
+.section-h { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--text); letter-spacing: -0.01em; max-width: 720px; margin-bottom: 1.5rem; }
+.section-h em { font-style: italic; color: var(--terra); }
+.section-p { font-size: 15px; color: var(--text-2); line-height: 1.8; max-width: 660px; }
+.section-p + .section-p { margin-top: 1rem; }
+.bg-light { background: var(--terra-light); }
+.bg-white { background: white; }
+
+/* WHY OPERATIONS */
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.thread-list { display: flex; flex-direction: column; }
+.thread-item { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 0.5px solid var(--border-2); }
+.thread-item:last-child { border-bottom: none; }
+.thread-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--terra); flex-shrink: 0; margin-top: 8px; }
+.thread-text { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+.thread-text strong { color: var(--text); font-weight: 500; }
+
+/* RESEARCH THREADS */
+.threads-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5px; background: var(--border); border: 0.5px solid var(--border); margin-top: 3rem;
+}
+.thread-card { background: white; padding: 2.5rem 2rem; display: flex; flex-direction: column; }
+.thread-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; font-style: italic; color: var(--terra); line-height: 1; margin-bottom: 1rem; }
+.thread-name { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 10px; line-height: 1.4; }
+.thread-q { font-size: 14px; color: var(--text-2); line-height: 1.7; font-style: italic; margin-bottom: 1.25rem; }
+.thread-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-3); margin: 0.75rem 0 6px; }
+.thread-card ul { list-style: none; font-size: 13px; color: var(--text-2); line-height: 1.6; }
+.thread-card li { padding: 4px 0 4px 14px; position: relative; }
+.thread-card li::before { content: ""; position: absolute; left: 0; top: 12px; width: 5px; height: 1px; background: var(--terra); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 1.5rem; }
+.tag { font-size: 11px; padding: 3px 9px; border-radius: 2px; background: var(--terra-light); color: var(--terra-deep); }
+
+/* STATUS TABLE */
+.status-list { margin-top: 3rem; border-top: 0.5px solid var(--border-2); }
+.status-row {
+  display: grid; grid-template-columns: 1fr 200px 120px; gap: 1.5rem; align-items: center;
+  padding: 1.1rem 0.5rem; border-bottom: 0.5px solid var(--border-2);
+}
+.status-title { font-size: 14px; font-weight: 500; color: var(--text); }
+.status-detail { font-size: 12px; color: var(--text-3); margin-top: 2px; line-height: 1.5; }
+.status-thread { font-size: 12px; color: var(--text-2); }
+.badge { font-size: 11px; padding: 4px 10px; border-radius: 2px; text-align: center; font-weight: 500; letter-spacing: 0.02em; }
+.b-done { background: #E8F5E9; color: #1B5E20; }
+.b-running { background: #E3F2FD; color: #0D47A1; }
+.b-submitted { background: #FFF8E1; color: #7B5800; }
+.b-planned { background: var(--terra-light); color: var(--terra-deep); }
+
+/* EXPERIMENT */
+.experiment { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+.exp-card { background: white; border: 0.5px solid var(--border-2); border-radius: 4px; padding: 2rem; }
+.exp-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 1rem; }
+.exp-card dl { display: grid; grid-template-columns: 110px 1fr; gap: 10px 16px; font-size: 13px; }
+.exp-card dt { color: var(--text-3); text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; padding-top: 3px; }
+.exp-card dd { color: var(--text-2); line-height: 1.6; }
+.chain { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin: 1.5rem 0 0.5rem; flex-wrap: wrap; }
+.node { flex: 1; min-width: 72px; text-align: center; font-size: 11px; padding: 10px 4px; background: var(--terra-light); border-radius: 3px; color: var(--terra-deep); }
+.node b { display: block; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terra); margin-bottom: 2px; }
+.arrow { color: var(--terra-mid); font-size: 14px; }
+.chain-note { font-size: 11px; color: var(--text-3); text-align: center; }
+.results-box { border: 1.5px dashed var(--border-2); border-radius: 4px; padding: 2rem; min-height: 220px; display: flex; flex-direction: column; justify-content: center; background: var(--terra-pale); }
+
+/* QUESTIONS */
+.q-list { counter-reset: q; margin-top: 2.5rem; max-width: 820px; }
+.q-item { counter-increment: q; display: grid; grid-template-columns: 56px 1fr; gap: 1rem; padding: 1.4rem 0; border-bottom: 0.5px solid var(--border-2); }
+.q-item::before { content: counter(q, decimal-leading-zero); font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-style: italic; color: var(--terra); line-height: 1; }
+.q-text { font-size: 15px; color: var(--text); line-height: 1.65; }
+.q-why { font-size: 13px; color: var(--text-3); margin-top: 4px; line-height: 1.6; }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+.skill { border-top: 2px solid var(--terra); padding-top: 1rem; }
+.skill h4 { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+.skill p { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+
+/* READING LOG */
+.reading { margin-top: 2.5rem; display: grid; gap: 0; max-width: 820px; }
+.read-row { display: grid; grid-template-columns: 120px 1fr; gap: 1rem; padding: 0.9rem 0; border-bottom: 0.5px solid var(--border-2); font-size: 14px; }
+.read-type { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-3); padding-top: 3px; }
+.read-title { color: var(--text); }
+.read-note { font-size: 13px; color: var(--text-2); margin-top: 2px; }
+
+/* PLAN */
+.plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px; background: var(--border); border: 0.5px solid var(--border); margin-top: 3rem; }
+.plan-step { background: white; padding: 1.75rem 1.5rem; }
+.plan-when { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--terra); margin-bottom: 8px; }
+.plan-step h4 { font-size: 14px; font-weight: 500; margin-bottom: 8px; line-height: 1.4; }
+.plan-step p { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+.plan-out { font-size: 12px; color: var(--green); margin-top: 10px; font-weight: 500; }
+.needs { margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.need { background: var(--terra-pale); border-left: 2px solid var(--green-mid); padding: 1rem 1.25rem; font-size: 13px; color: var(--text-2); line-height: 1.6; }
+.need strong { display: block; color: var(--text); font-weight: 500; margin-bottom: 2px; }
+
+/* OUTPUTS */
+.outputs { margin-top: 2.5rem; display: grid; gap: 1rem; }
+.output { border: 0.5px solid var(--border-2); border-left: 3px solid var(--terra); border-radius: 3px; padding: 1.5rem 1.75rem; background: var(--terra-pale); }
+.output-kind { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-3); margin-bottom: 6px; }
+.output-title { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; line-height: 1.25; color: var(--text); }
+.output-authors { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+.output-note { font-size: 13px; color: var(--text-2); line-height: 1.65; margin-top: 8px; max-width: 760px; }
+.output-links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 12px; font-size: 12px; color: var(--text-3); }
+.output-links a { color: var(--terra); text-decoration: none; border-bottom: 1px solid var(--border-2); word-break: break-word; }
+.output-links a:hover { border-bottom-color: var(--terra); }
+
+/* CONTACT */
+.contact { background: var(--green-deep); color: #FAF0E6; text-align: center; }
+.contact .section-h { color: #FAF0E6; margin: 0 auto 1.25rem; }
+.contact .section-h em { color: var(--terra-mid); }
+.contact .section-p { color: rgba(250,240,230,0.75); margin: 0 auto 2.5rem; }
+.contact .eyebrow { color: var(--terra-mid); }
+
+/* FOOTER */
+footer { background: #0D0906; padding: 2.5rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(196,149,106,0.5); letter-spacing: 0.06em; }
+.footer-text { font-size: 11px; color: rgba(196,149,106,0.3); }
+.footer-links { display: flex; gap: 20px; }
+.footer-link { font-size: 11px; color: rgba(196,149,106,0.4); text-decoration: none; letter-spacing: 0.04em; }
+.footer-link:hover { color: rgba(196,149,106,0.7); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 900px) {
+  .why-grid, .experiment { grid-template-columns: 1fr; gap: 2rem; }
+  .plan-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  nav { padding: 0 1rem; }
+  .nav-links { display: none; }
+  .hero { padding: 7rem 1rem 4rem; min-height: auto; }
+  section { padding: 4rem 1rem; }
+  .summary-strip { padding: 2.5rem 1rem; }
+  footer { padding: 2rem 1rem; flex-direction: column; }
+  .status-row { grid-template-columns: 1fr; gap: 6px; }
+  .badge { width: fit-content; }
+  .plan-grid { grid-template-columns: 1fr; }
+  .exp-card dl { grid-template-columns: 1fr; gap: 2px; }
+  .exp-card dd { margin-bottom: 8px; }
+  .read-row { grid-template-columns: 1fr; gap: 2px; }
+  .q-item { grid-template-columns: 40px 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="agora_lab_v10.html">
+    <div class="nav-bars">
+      <span style="height:11px; background:#8B5E3C;"></span>
+      <span style="height:15px; background:#C4956A;"></span>
+      <span style="height:20px; background:#FAF0E6;"></span>
+      <span style="height:13px; background:#8B5E3C; opacity:0.5;"></span>
+    </div>
+    <span class="logo-wordmark">AGORA Lab</span><span class="logo-sub">· AI Safety</span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#why">Why operations</a>
+    <a class="nav-link" href="#agenda">Agenda</a>
+    <a class="nav-link" href="#work">Current work</a>
+    <a class="nav-link" href="#experiment">Experiment</a>
+    <a class="nav-link" href="#outputs">Outputs</a>
+    <a class="nav-link" href="#plan">Plan</a>
+    <a class="nav-link cta" href="mailto:samar@bgsu.edu?subject=AI%20Safety%20Research">Get in touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-tag">AI Safety Research · AGORA Lab · Bowling Green State University</div>
+  <h1 class="hero-h1">What goes wrong when AI agents <em>run the operation?</em></h1>
+  <p class="hero-sub">
+    Supply chains are the oldest multi-agent systems we have, and the best-documented record of how sensible local decisions add up to harmful system-wide outcomes. AGORA Lab uses that record to study the safety of AI agents deployed in real operations, and how people keep meaningful oversight of them.
+  </p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="#agenda">Research agenda</a>
+    <a class="btn-ghost" href="#work">What's done so far</a>
+  </div>
+</section>
+
+<!-- 30-SECOND SUMMARY -->
+<div class="summary-strip">
+  <div class="summary-grid">
+    <div class="summary-item">
+      <div class="summary-k">Focus</div>
+      <div class="summary-v">Emergent risk and human oversight in multi-agent AI systems that make operational decisions</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-k">Approach</div>
+      <div class="summary-v">Simulation environments with LLM agents, human-subject studies, and field partners in manufacturing</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-k">Background</div>
+      <div class="summary-v">Industrial &amp; systems engineering, operations research, decision-making under data scarcity</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-k">Stage</div>
+      <div class="summary-v">Early stage: open-source LLM agent testbed released, first preprint submitted, four related proposals under review</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY OPERATIONS -->
+<section class="bg-white" id="why">
+  <div class="section-inner why-grid">
+    <div>
+      <span class="eyebrow">Why an operations engineer works on AI safety</span>
+      <h2 class="section-h">Operations research has studied <em>emergent failure</em> for sixty years.</h2>
+      <p class="section-p">
+        AI agents are moving from chat windows into procurement, inventory, scheduling and logistics, where decisions have physical and economic consequences and many agents interact at once. That is the setting operations research was built for.
+      </p>
+      <p class="section-p">
+        AGORA Lab comes to AI safety from industrial and systems engineering rather than machine learning. What we bring is a toolkit for stress-testing interacting decision-makers, and access to the real deployment settings where those failures will show up first.
+      </p>
+    </div>
+    <div class="thread-list">
+      <div class="thread-item"><span class="thread-dot"></span><span class="thread-text"><strong>Emergent failure is the norm, not the exception.</strong> The bullwhip effect, cascading stockouts and supplier collapse all come from agents that each behave reasonably on their own. These are well-characterised, measurable failure modes we can test AI agents against.</span></div>
+      <div class="thread-item"><span class="thread-dot"></span><span class="thread-text"><strong>Mature methods for system-level evaluation.</strong> Discrete-event simulation, game-theoretic inventory models, disruption stress tests and multi-criteria decision analysis transfer directly to evaluating agent populations.</span></div>
+      <div class="thread-item"><span class="thread-dot"></span><span class="thread-text"><strong>Realistic deployment contexts.</strong> Small manufacturers and cooperatives will adopt AI agents with thin oversight and scarce data. That is where safety assumptions are weakest and least studied.</span></div>
+      <div class="thread-item"><span class="thread-dot"></span><span class="thread-text"><strong>Field access.</strong> Active partners in Northwest Ohio manufacturing and across the MENA region make it possible to test findings outside the lab.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA: THREE THREADS -->
+<section class="bg-light" id="agenda">
+  <div class="section-inner">
+    <span class="eyebrow">Research agenda</span>
+    <h2 class="section-h">Three threads, <em>one question</em> about who stays in control.</h2>
+    <p class="section-p">Each thread connects existing AGORA work to a specific AI safety problem. Together they run from the technical level (how agents interact) to the human level (how operators oversee them) and the societal level (who loses decision power).</p>
+
+    <div class="threads-grid">
+      <div class="thread-card">
+        <div class="thread-num">1</div>
+        <div class="thread-name">Emergent risk in multi-agent AI systems</div>
+        <div class="thread-q">"When several AI agents each act safely on their own, can the system they form still fail, and can we detect it before deployment?"</div>
+        <div class="thread-label">Builds on</div>
+        <ul>
+          <li>MANGO: a multi-player operations simulation, piloted with students</li>
+          <li><em>MANGO Arena:</em> open-source testbed where four LLM agents run a disrupted supply chain (released Nov 2026)</li>
+          <li><em>Safe by Design?</em> Emergent risk in multi-agent inventory systems with heterogeneous safety thresholds (submitted Nov 2026)</li>
+        </ul>
+        <div class="tags"><span class="tag">Multi-agent safety</span><span class="tag">Agent evaluations</span><span class="tag">Cooperative AI</span></div>
+      </div>
+      <div class="thread-card">
+        <div class="thread-num">2</div>
+        <div class="thread-name">Human oversight &amp; trust calibration</div>
+        <div class="thread-q">"When data is thin and stakes are high, do operators over-rely or under-rely on AI recommendations, and what oversight design keeps their judgment active?"</div>
+        <div class="thread-label">Builds on</div>
+        <ul>
+          <li>MS thesis (G. N. Kirea): <em>Trust Calibration Under Data Scarcity</em> in supply-chain decisions</li>
+          <li>NSF CAREER proposal on human–AI decision intelligence (submitted Jul 2026)</li>
+          <li>Planned NSF GOALI work with a manufacturing partner</li>
+        </ul>
+        <div class="tags"><span class="tag">Scalable oversight</span><span class="tag">Human–AI teaming</span><span class="tag">Over-reliance</span></div>
+      </div>
+      <div class="thread-card">
+        <div class="thread-num">3</div>
+        <div class="thread-name">Decision power &amp; gradual disempowerment</div>
+        <div class="thread-q">"As operational decisions shift to algorithms, who loses judgment, agency and the ability to contest outcomes, and how quietly does it happen?"</div>
+        <div class="thread-label">Builds on</div>
+        <ul>
+          <li><em>Automation or Augmentation?</em> AI exposure and earnings of U.S. manufacturing workers (submitted Oct 2026)</li>
+          <li><em>The Judgment Dividend:</em> what workers lose when AI decides (in preparation)</li>
+          <li><em>Fair Signal:</em> students auditing the AI that evaluates them (submitted Oct 2026)</li>
+        </ul>
+        <div class="tags"><span class="tag">Societal impacts</span><span class="tag">AI governance</span><span class="tag">Auditing</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRENT WORK / STATUS -->
+<section class="bg-white" id="work">
+  <div class="section-inner">
+    <span class="eyebrow">Current work</span>
+    <h2 class="section-h">What exists today, <em>and where it stands.</em></h2>
+    <p class="section-p">This agenda is new. Each item is marked by its real status, so it's clear what is built, what is running, and what is still a plan.</p>
+
+    <div class="status-list">
+      <div class="status-row">
+        <div><div class="status-title">MANGO multi-player operations simulation</div><div class="status-detail">Production planning, MRP, supplier selection and disruption events with interdependent teams. Piloted in ISE courses. KEEN Engineering Unleashed Fellowship.</div></div>
+        <div class="status-thread">Thread 1 · testbed</div>
+        <span class="badge b-done">Built &amp; piloted</span>
+      </div>
+      <div class="status-row">
+        <div><div class="status-title">MANGO Arena: supply-chain testbed for LLM agents</div><div class="status-detail">Four LLM agents run a serial supply chain adapted from MANGO. Environment, rule engine, scripted reference agents, LLM runner and every logged pilot decision released openly. <a href="https://doi.org/10.5281/zenodo.24325448" target="_blank" rel="noopener">Zenodo, v0.1.0</a></div></div>
+        <div class="status-thread">Thread 1</div>
+        <span class="badge b-done">Released · Nov 2026</span>
+      </div>
+      <div class="status-row">
+        <div><div class="status-title">MANGO Arena: Same Seeds, Different Chains — Evaluating LLM Agents in a Disrupted Supply Chain</div><div class="status-detail">Paper reporting the first pilot with the testbed. arXiv link to follow once announced.</div></div>
+        <div class="status-thread">Thread 1</div>
+        <span class="badge b-submitted">Submitted · arXiv</span>
+      </div>
+      <div class="status-row">
+        <div><div class="status-title">Safe by Design? Emergent risk in multi-agent inventory systems</div><div class="status-detail">Simulation-first study of how heterogeneous safety thresholds interact across agents.</div></div>
+        <div class="status-thread">Thread 1</div>
+        <span class="badge b-submitted">Submitted · Nov 2026</span>
+      </div>
+      <div class="status-row">
+        <div><div class="status-title">Trust calibration under data scarcity</div><div class="status-detail">MS thesis on reliance on AI recommendations in supply-chain and logistics decisions.</div></div>
+        <div class="status-thread">Thread 2</div>
+        <span class="badge b-running">In progress</span>
+      </div>
+      <div class="status-row">
+        <div><div class="status-title">Automation or Augmentation? AI exposure in U.S. manufacturing</div><div class="status-detail">Difference-in-differences on job postings, O*NET task measures and CPS earnings. With Dr. Amanda Cook.</div></div>
+        <div class="status-thread">Thread 3</div>
+        <span class="badge b-submitted">Submitted · Oct 2026</span>
+      </div>
+      <div class="status-row">
+        <div><div class="status-title">Fair Signal: students auditing AI evaluation</div><div class="status-detail">With Dr. Sonia Chacko, Dr. Mikhail Shilov and the BGSU Engineering Society Club.</div></div>
+        <div class="status-thread">Thread 3</div>
+        <span class="badge b-submitted">Submitted · Oct 2026</span>
+      </div>
+      <div class="status-row">
+        <div><div class="status-title">The Judgment Dividend</div><div class="status-detail">What is lost and valued when worker decisions shift to algorithmic systems.</div></div>
+        <div class="status-thread">Thread 3</div>
+        <span class="badge b-planned">In preparation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIRST EXPERIMENT -->
+<section class="bg-light" id="experiment">
+  <div class="section-inner">
+    <span class="eyebrow">First experiment</span>
+    <h2 class="section-h">Do LLM agents <em>amplify or dampen</em> supply-chain instability?</h2>
+    <p class="section-p">A small, fully reproducible starting point, built on the open-source MANGO Arena testbed. It tests a well-known failure mode with clear metrics before moving on to harder questions about collusion and oversight. The card below describes the full study design; the first pilot covers part of it.</p>
+
+    <div class="experiment">
+      <div class="exp-card">
+        <h3>Study design</h3>
+        <dl>
+          <dt>Setup</dt><dd>A serial supply chain inside MANGO. Each stage is run by an LLM agent that sees only local inventory, orders and limited messages.</dd>
+          <dt>Shock</dt><dd>A demand surge or supplier failure injected mid-run.</dd>
+          <dt>Baselines</dt><dd>Classical ordering policies (base-stock) and student teams from MANGO pilots.</dd>
+          <dt>Variations</dt><dd>Model capability, information sharing, and a per-agent "safety threshold" instruction.</dd>
+          <dt>Metrics</dt><dd>Order-variance amplification (bullwhip ratio), service level, total cost, and violations of stated constraints.</dd>
+        </dl>
+        <div class="chain">
+          <div class="node"><b>Agent</b>Retailer</div><span class="arrow">→</span>
+          <div class="node"><b>Agent</b>Wholesaler</div><span class="arrow">→</span>
+          <div class="node"><b>Agent</b>Distributor</div><span class="arrow">→</span>
+          <div class="node"><b>Agent</b>Factory</div>
+        </div>
+        <div class="chain-note">Orders flow upstream · goods flow downstream · each agent has local information only</div>
+      </div>
+      <div class="results-box">
+        <span class="eyebrow">Pilot status</span>
+        <p class="section-p">The first pilot is complete and written up in <em>MANGO Arena: Same Seeds, Different Chains</em>, submitted to arXiv. The testbed, every logged agent decision (including superseded runs) and the experiment log are openly available, so anyone can check or rerun the results.</p>
+        <div class="hero-actions" style="justify-content:flex-start; margin-top:1.5rem; animation:none;">
+          <a class="btn-primary" href="https://doi.org/10.5281/zenodo.24325448" target="_blank" rel="noopener">Code &amp; logs on Zenodo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTPUTS -->
+<section class="bg-white" id="outputs">
+  <div class="section-inner">
+    <span class="eyebrow">Papers, code &amp; data</span>
+    <h2 class="section-h">Open outputs, <em>reproducible by design.</em></h2>
+    <p class="section-p">Every paper is released with its code and data under an open licence, so results can be checked and reused.</p>
+    <div class="outputs">
+      <div class="output">
+        <div class="output-kind">Preprint · Submitted to arXiv · Nov 2026</div>
+        <div class="output-title">MANGO Arena: Same Seeds, Different Chains — Evaluating LLM Agents in a Disrupted Supply Chain</div>
+        <div class="output-authors">S. Haddou Amar</div>
+        <div class="output-note">Evaluates LLM agents running a four-stage supply chain under disruption, using the MANGO Arena testbed. Thread 1.</div>
+        <div class="output-links"><span>arXiv link to follow</span><a href="https://doi.org/10.5281/zenodo.24325448" target="_blank" rel="noopener">Code &amp; logs · doi:10.5281/zenodo.24325448</a></div>
+      </div>
+      <div class="output">
+        <div class="output-kind">Software · Zenodo · v0.1.0 · MIT licence</div>
+        <div class="output-title">MANGO Arena: A Supply-Chain Testbed for LLM Agents Under Disruption</div>
+        <div class="output-authors">S. Haddou Amar</div>
+        <div class="output-note">Environment, rule engine, scripted reference agents, LLM runner, all logged pilot decisions and the experiment log.</div>
+        <div class="output-links"><a href="https://doi.org/10.5281/zenodo.24325448" target="_blank" rel="noopener">doi:10.5281/zenodo.24325448</a></div>
+      </div>
+      <div class="output">
+        <div class="output-kind">Journal article · Submitted to <em>Omega</em> · 2026</div>
+        <div class="output-title">Order Matters: Criterion Order and the Reliability of Profile-Area Scores in Multicriteria Decision Analysis</div>
+        <div class="output-authors">S. Haddou Amar</div>
+        <div class="output-note">Shows that profile-area scores are weighted sums whose weights are set by how criteria are laid out, measures how often criterion order changes the recommended alternative, and characterises the alternatives that are order-invariant. A study of when a decision tool's recommendation depends on an arbitrary design choice.</div>
+        <div class="output-links"><a href="https://doi.org/10.5281/zenodo.24293170" target="_blank" rel="noopener">Code &amp; data · doi:10.5281/zenodo.24293170</a><a href="https://github.com/saraamar/Order" target="_blank" rel="noopener">GitHub</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN QUESTIONS -->
+<section class="bg-light" id="questions">
+  <div class="section-inner">
+    <span class="eyebrow">Open questions</span>
+    <h2 class="section-h">The questions we most <em>want answered.</em></h2>
+    <div class="q-list">
+      <div class="q-item"><div><div class="q-text">Do LLM agents amplify or dampen the bullwhip effect compared with humans and classical policies, and does this change as models become more capable?</div><div class="q-why">A clean, measurable test of whether capability brings system-level stability or new instability.</div></div></div>
+      <div class="q-item"><div><div class="q-text">In a shared market, do competing agents drift into tacit coordination, such as withholding supply or matching prices, without being told to?</div><div class="q-why">Collusion between agents is hard to see from any single agent's behaviour.</div></div></div>
+      <div class="q-item"><div><div class="q-text">When agents have different safety thresholds, does the least cautious agent set the risk level of the whole system?</div><div class="q-why">This decides whether safety must be assured per agent or per system.</div></div></div>
+      <div class="q-item"><div><div class="q-text">When data is scarce, which oversight designs (approval gates, uncertainty display, deferral rules) keep operators calibrated instead of rubber-stamping?</div><div class="q-why">Oversight that looks meaningful on paper can fail quietly in practice.</div></div></div>
+      <div class="q-item"><div><div class="q-text">Which operational decisions should never be fully delegated, and what evidence would tell us?</div><div class="q-why">Connects the technical findings to deployment guidance for firms and policymakers.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="bg-white" id="skills">
+  <div class="section-inner">
+    <span class="eyebrow">What we bring</span>
+    <h2 class="section-h">Skills that transfer, and <em>what we're still building.</em></h2>
+    <div class="skills-grid">
+      <div class="skill"><h4>Simulation &amp; stochastic modelling</h4><p>Discrete-event and agent-based models of production and logistics systems under uncertainty.</p></div>
+      <div class="skill"><h4>Optimization &amp; operations research</h4><p>Facility layout, production planning, inventory policy and multi-criteria decision analysis.</p></div>
+      <div class="skill"><h4>Experimental &amp; causal design</h4><p>Field collaborations, human-subject studies and quasi-experimental methods such as difference-in-differences.</p></div>
+      <div class="skill"><h4>Environment &amp; game design</h4><p>Designed and deployed MANGO, a multi-player decision environment with injected disruptions and logged outcomes.</p></div>
+      <div class="skill"><h4>Industry &amp; international partnerships</h4><p>Manufacturing partners in Ohio and research collaborators across MENA; experience moving work into real sites.</p></div>
+      <div class="skill"><h4>Currently building</h4><p>Python-based simulation and analysis, now extended to MANGO Arena, an open LLM agent testbed, alongside growing practice in agent evaluation design.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- READING LOG -->
+<section class="bg-light" id="learning">
+  <div class="section-inner">
+    <span class="eyebrow">Continuous improvement</span>
+    <h2 class="section-h">Building expertise and <em>sharing the work.</em></h2>
+    <p class="section-p">The literature shaping this agenda, and the events where we engage with the wider AI community.</p>
+    <div class="reading">
+      <div class="read-row"><div class="read-type">Report</div><div><div class="read-title">Multi-Agent Risks from Advanced AI <span style="color:var(--text-3);">— Hammond et al., Cooperative AI Foundation (2025)</span></div><div class="read-note">Frames miscoordination, conflict and collusion between agents. These are the failure modes Thread 1 tests in supply-chain settings.</div></div></div>
+      <div class="read-row"><div class="read-type">Paper</div><div><div class="read-title">Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback <span style="color:var(--text-3);">— Casper et al. (2023)</span></div><div class="read-note">Limits of learning from human judgment, which bear on Thread 2: how human oversight degrades when feedback is scarce or miscalibrated.</div></div></div>
+      <div class="read-row"><div class="read-type">Paper</div><div><div class="read-title">Concrete Problems in AI Safety <span style="color:var(--text-3);">— Amodei et al. (2016)</span></div><div class="read-note">Side effects, reward hacking and safe exploration, recast here for agents making operational decisions.</div></div></div>
+      <div class="read-row"><div class="read-type">Event</div><div><div class="read-title">Great Lakes AI Week 2026 <span style="color:var(--text-3);">— Nov 10–12, co-hosted by BGSU and The University of Toledo</span></div><div class="read-note">Participated in the region's AI leadership summit on real-world AI applications, connecting with industry and community leaders who are potential partners and audiences for this work. <a href="https://news.utoledo.edu/index.php/10_26_2026/great-lakes-ai-week-coming-to-university-of-toledo" target="_blank" rel="noopener">UToledo News</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12-MONTH PLAN -->
+<section class="bg-white" id="plan">
+  <div class="section-inner">
+    <span class="eyebrow">Next 12 months</span>
+    <h2 class="section-h">From one experiment to <em>an open testbed.</em></h2>
+    <div class="plan-grid">
+      <div class="plan-step"><div class="plan-when">Months 1–3</div><h4>Scale the pilot</h4><p>Extend MANGO Arena runs across more models and seeds, and compare against classical and human baselines.</p><div class="plan-out">Already out: testbed v0.1.0 + arXiv preprint</div></div>
+      <div class="plan-step"><div class="plan-when">Months 4–6</div><h4>Multi-agent risk</h4><p>Shared-market variant: test for tacit coordination and the effect of heterogeneous safety thresholds.</p><div class="plan-out">Output: workshop paper</div></div>
+      <div class="plan-step"><div class="plan-when">Months 7–9</div><h4>Human oversight study</h4><p>Students and practitioners oversee agent teams in MANGO under different oversight designs.</p><div class="plan-out">Output: human-subject study results</div></div>
+      <div class="plan-step"><div class="plan-when">Months 10–12</div><h4>Release &amp; field check</h4><p>Release MANGO Arena v1.0 as a reusable benchmark, and review findings with manufacturing partners.</p><div class="plan-out">Output: public benchmark + paper</div></div>
+    </div>
+    <div class="needs">
+      <div class="need"><strong>Protected research time</strong>Course release to focus on the safety agenda.</div>
+      <div class="need"><strong>Model access &amp; compute</strong>API credits for many repeated multi-agent runs.</div>
+      <div class="need"><strong>Research assistance</strong>A graduate student to help build and run experiments.</div>
+      <div class="need"><strong>Mentorship</strong>Guidance from AI safety researchers on evaluation design and framing.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <span class="eyebrow">Collaborate</span>
+    <h2 class="section-h">Working on agent evaluations, multi-agent safety or <em>human oversight?</em></h2>
+    <p class="section-p">We'd like to hear from safety researchers, firms piloting AI agents in operations, and students who want to build evaluation environments.</p>
+    <div class="hero-actions" style="margin-top:0;">
+      <a class="btn-primary" href="mailto:samar@bgsu.edu?subject=AI%20Safety%20Research">Contact the lab</a>
+      <a class="btn-ghost" href="agora_lab_v10.html">Back to AGORA Lab</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">AGORA Lab</div>
+  <div class="footer-text">AI Safety Research · Bowling Green State University · Perrysburg, Ohio</div>
+  <div class="footer-links">
+    <a class="footer-link" href="https://sites.google.com/view/saraamar" target="_blank">Personal site</a>
+    <a class="footer-link" href="mailto:samar@bgsu.edu">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
