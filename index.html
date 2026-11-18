@@ -140,6 +140,16 @@ nav {
   transition: border-color 0.2s, color 0.2s;
 }
 .btn-ghost:hover { border-color: rgba(196,149,106,0.6); color: #C4956A; }
+.hero-actions { flex-wrap: wrap; }
+.btn-safety {
+  background: var(--green); color: #FAF0E6;
+  padding: 13px 28px; border-radius: 3px;
+  text-decoration: none; font-size: 14px; font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--green-mid);
+  transition: background 0.2s;
+}
+.btn-safety:hover { background: var(--green-deep); }
 .hero-scroll {
   position: absolute; bottom: 2.5rem; right: 4rem;
   font-size: 11px; color: rgba(196,149,106,0.4);
@@ -188,6 +198,28 @@ section { padding: 6rem 4rem; }
   margin-bottom: 6px;
 }
 .stat-label { font-size: 12px; color: var(--terra-mid); line-height: 1.5; }
+
+/* ─── AI SAFETY BAND ─── */
+.safety-band { background: white; border-bottom: 0.5px solid var(--border); }
+.safety-eyebrow { color: var(--green); }
+.safety-band .section-h em { color: var(--green); }
+.safety-head { display: flex; gap: 3rem; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; }
+.safety-cta { flex-shrink: 0; margin-bottom: 0.5rem; }
+.safety-threads {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5px; background: var(--border); border: 0.5px solid var(--border); margin-top: 2.5rem;
+}
+.safety-thread { background: white; padding: 1.5rem; display: flex; gap: 14px; font-size: 14px; color: var(--text-2); line-height: 1.65; }
+.safety-thread strong { color: var(--text); font-weight: 500; }
+.safety-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-style: italic; color: var(--green); line-height: 1; }
+.safety-evidence {
+  margin-top: 1.5rem; display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+  background: #EEF4F1; border-left: 3px solid var(--green-mid);
+  padding: 1rem 1.25rem; font-size: 14px; color: var(--text-2); line-height: 1.6;
+}
+.safety-evidence strong { color: var(--text); font-weight: 500; }
+.safety-evidence a { color: var(--green); }
+.safety-badge { font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 2px; background: #E8F5E9; color: #1B5E20; white-space: nowrap; }
 
 /* ─── THE QUESTION ─── */
 .question-section { background: var(--terra-light); }
@@ -686,10 +718,11 @@ footer {
     <a class="nav-link" href="#mission">Mission</a>
     <a class="nav-link" href="#research">Research</a>
     <a class="nav-link" href="#mango">MANGO</a>
+    <a class="nav-link" href="ai-safety.html">AI Safety</a>
     <a class="nav-link" href="#field">Field Network</a>
     <a class="nav-link" href="#team">People</a>
     <a class="nav-link" href="#join">Join</a>
-    <a class="nav-link cta" href="/cdn-cgi/l/email-protection#ec9f8d818d9eac8e8b9f99c2898899">Get in touch</a>
+    <a class="nav-link cta" href="mailto:samar@bgsu.edu">Get in touch</a>
   </div>
 </nav>
 
@@ -705,6 +738,7 @@ footer {
   </p>
   <div class="hero-actions">
     <a class="btn-primary" href="#research">Explore our research</a>
+    <a class="btn-safety" href="ai-safety.html">AI Safety Projects →</a>
     <a class="btn-ghost" href="#join">Collaborate with us</a>
   </div>
   <div class="hero-scroll">Scroll</div>
@@ -732,6 +766,29 @@ footer {
   </div>
 </div>
 
+<!-- AI SAFETY FOCUS -->
+<section class="safety-band" id="ai-safety">
+  <div class="section-inner">
+    <div class="safety-head">
+      <div>
+        <span class="eyebrow safety-eyebrow">AI safety research</span>
+        <h2 class="section-h">What goes wrong when AI agents <em>run the operation?</em></h2>
+        <p class="section-p">Supply chains are the oldest multi-agent systems we have. AGORA Lab uses decades of operations research on how they fail to test the safety of AI agents in real operations, and how people keep meaningful oversight of them.</p>
+      </div>
+      <a class="btn-safety safety-cta" href="ai-safety.html">AI Safety Projects →</a>
+    </div>
+    <div class="safety-threads">
+      <div class="safety-thread"><span class="safety-num">1</span><div><strong>Emergent multi-agent risk.</strong> Can AI agents that each act safely still form a system that fails?</div></div>
+      <div class="safety-thread"><span class="safety-num">2</span><div><strong>Human oversight.</strong> When data is scarce, do operators over-rely or under-rely on AI recommendations?</div></div>
+      <div class="safety-thread"><span class="safety-num">3</span><div><strong>Decision power.</strong> As decisions shift to algorithms, who loses judgment and the ability to contest outcomes?</div></div>
+    </div>
+    <div class="safety-evidence">
+      <span class="safety-badge">Released · Nov 2026</span>
+      <span><strong>MANGO Arena</strong>, an open-source testbed where four LLM agents run a disrupted supply chain, with its first paper submitted to arXiv. <a href="https://doi.org/10.5281/zenodo.24325448" target="_blank" rel="noopener">Code &amp; logs on Zenodo</a></span>
+    </div>
+  </div>
+</section>
+
 <!-- THE QUESTION -->
 <section class="question-section" id="mission">
   <div class="section-inner">
@@ -746,7 +803,7 @@ footer {
       <div class="thread-list">
         <div class="thread-item">
           <div class="thread-dot"></div>
-          <p class="thread-text"><strong>Operations & management first.</strong> AGORA is grounded in industrial and systems engineering, operations management, and management science. AI is a tool we study — not the discipline we practice.</p>
+          <p class="thread-text"><strong>Operations & management first.</strong> AGORA is grounded in industrial and systems engineering, operations management, and management science. AI is something we study, test and hold to account, grounded in operations rather than in machine learning.</p>
         </div>
         <div class="thread-item">
           <div class="thread-dot"></div>
@@ -862,6 +919,32 @@ footer {
           <p class="project-sub">International Science Council & INGSA · 5-module programme · Modules 1–2 active July 2026 · Science-policy interface, evidence-informed policymaking</p>
         </div>
         <span class="project-status status-active">Active</span>
+      </div>
+
+      <!-- ── PAPERS & OPEN OUTPUTS ── -->
+      <div class="project-row">
+        <div class="project-pillar">Pillar A</div>
+        <div>
+          <p class="project-title">MANGO Arena — A Supply-Chain Testbed for LLM Agents Under Disruption</p>
+          <p class="project-sub">Open-source software · v0.1.0 · MIT licence · Four LLM agents run a serial supply chain adapted from MANGO · Environment, rule engine, reference agents, LLM runner &amp; all pilot logs · <a href="https://doi.org/10.5281/zenodo.24325448" target="_blank" rel="noopener">Zenodo DOI</a> · <a href="ai-safety.html">AI safety research</a></p>
+        </div>
+        <span class="project-status status-awarded">Released</span>
+      </div>
+      <div class="project-row">
+        <div class="project-pillar">Pillar A</div>
+        <div>
+          <p class="project-title">MANGO Arena: Same Seeds, Different Chains — Evaluating LLM Agents in a Disrupted Supply Chain</p>
+          <p class="project-sub">Preprint · Submitted to arXiv November 2026 · Code &amp; logs on <a href="https://doi.org/10.5281/zenodo.24325448" target="_blank" rel="noopener">Zenodo</a></p>
+        </div>
+        <span class="project-status status-prep">Submitted</span>
+      </div>
+      <div class="project-row">
+        <div class="project-pillar">Pillar O</div>
+        <div>
+          <p class="project-title">Order Matters: Criterion Order and the Reliability of Profile-Area Scores in Multicriteria Decision Analysis</p>
+          <p class="project-sub">Journal article · Submitted to <em>Omega</em> 2026 · Code &amp; data on <a href="https://doi.org/10.5281/zenodo.24293170" target="_blank" rel="noopener">Zenodo</a> and <a href="https://github.com/saraamar/Order" target="_blank" rel="noopener">GitHub</a></p>
+        </div>
+        <span class="project-status status-prep">Submitted</span>
       </div>
 
       <!-- ── EDUCATION: MANGO FAMILY ── -->
@@ -1203,21 +1286,21 @@ footer {
         <p class="join-title">Graduate students & researchers</p>
         <p class="join-text">AGORA is looking for students who want to do research that goes somewhere — into manufacturing plants, cooperative management offices, and trade ministries, not just journals. We offer field experience across multiple continents, an international network spanning MENA, sub-Saharan Africa, and East Asia, and direct industry exposure through active partnerships in the Great Lakes region. If you are drawn to industrial engineering, operations management, manufacturing systems, or development economics — and want your dissertation to matter outside academia — this is your lab.</p>
         <br>
-        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="/cdn-cgi/l/email-protection#74071519150634161307015a111001">Apply to join →</a>
+        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="mailto:samar@bgsu.edu">Apply to join →</a>
       </div>
       <div class="join-card">
         <div class="join-num">02</div>
         <p class="join-title">Industry & manufacturing partners</p>
         <p class="join-text">AGORA works with manufacturers, logistics operators, and operations managers who want rigorous analytical work — not generic consulting. We bring operations research methods, optimization modeling, field experiment design, and management science expertise. What we need from industry partners: data access, site access, and co-PI participation in funded research. Current partners include manufacturing firms and innovation consortia in Northwest Ohio. We are actively seeking new industry co-investigators for NSF GOALI and NOIC proposals in manufacturing systems, circular economy operations, and human-AI integration.</p>
         <br>
-        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="/cdn-cgi/l/email-protection#3043515d514270525743451e555445">Explore partnership →</a>
+        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="mailto:samar@bgsu.edu">Explore partnership →</a>
       </div>
       <div class="join-card">
         <div class="join-num">03</div>
         <p class="join-title">International academic collaborators</p>
         <p class="join-text">AGORA is actively building a network of researchers across the Global South, MENA, sub-Saharan Africa, and Southeast Asia who study operations management, manufacturing systems, industrial engineering, and development economics. We welcome partners in three forms: field access and co-authorship on proposals targeting marginalized or under-researched economies; co-supervision of doctoral students across institutions; and participation as named collaborators on international grant proposals including the Hinrich Foundation and future development economics submissions. We acknowledge the asymmetries of international academic collaboration honestly — AGORA is a genuine partner, not an extractive research relationship.</p>
         <br>
-        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="/cdn-cgi/l/email-protection#097a6864687b496b6e7a7c276c6d7c">Start a conversation →</a>
+        <a class="contact-link" style="color:var(--terra); border-bottom-color:var(--terra-mid);" href="mailto:samar@bgsu.edu">Start a conversation →</a>
       </div>
     </div>
   </div>
@@ -1239,7 +1322,7 @@ footer {
           <p style="font-size:13px; color:var(--text-2); margin-top:10px; line-height:1.7;">Sara's research sits at the intersection of operations management, manufacturing systems engineering, human-machine collaboration, and economic development. She examines how technology adoption — particularly AI and digital tools — reshapes operations, labor, and organizational outcomes in resource-constrained and SME-dominated economies across the Global South. Her work spans facility layout and optimization, artisanal cooperative resilience, human-centric AI adoption barriers in manufacturing, and logistics system design in low-data environments. She is committed to operations research and management science that is applied, global, and honest about the communities it serves.</p>
           <div style="display:flex; gap:12px; margin-top:12px;">
             <a class="team-link" href="https://sites.google.com/view/saraamar" target="_blank">Personal site</a>
-            <a class="team-link" href="/cdn-cgi/l/email-protection#64170509051624060317114a010011">Email</a>
+            <a class="team-link" href="mailto:samar@bgsu.edu">Email</a>
           </div>
         </div>
       </div>
@@ -1278,7 +1361,7 @@ footer {
         <p class="team-name">Open positions</p>
         <p class="team-role">MS & PhD students welcome</p>
         <p class="team-inst">Seeking students with interest in ISE, AI in operations, and development economics</p>
-        <a class="team-link" href="/cdn-cgi/l/email-protection#691a0804081b290b0e1a1c470c0d1c">Inquire →</a>
+        <a class="team-link" href="mailto:samar@bgsu.edu">Inquire →</a>
       </div>
     </div>
   </div>
@@ -1291,6 +1374,26 @@ footer {
     <h2 class="section-h">The lab is <em>in motion.</em></h2>
     <p class="section-p">AGORA Lab is a lab in active formation — awards, training, partnerships, and research developments as they happen. Updated as the work evolves.</p>
     <div class="news-grid">
+
+      <div class="news-card">
+        <div class="news-card-top">
+          <div class="news-date">November 2026</div>
+          <span class="news-badge nbadge-grant">Open Release</span>
+        </div>
+        <div class="news-title">MANGO Arena — Open Testbed for LLM Agents &amp; First Preprint</div>
+        <div class="news-body">Released MANGO Arena, an open-source testbed in which four LLM agents run a serial supply chain adapted from the MANGO classroom game. The release includes the environment, rule engine, scripted reference agents, LLM runner, every logged pilot decision and the experiment log. The accompanying paper, "MANGO Arena: Same Seeds, Different Chains — Evaluating LLM Agents in a Disrupted Supply Chain," has been submitted to arXiv. Part of AGORA Lab's <a href="ai-safety.html">AI safety research</a>. <a href="https://doi.org/10.5281/zenodo.24325448" target="_blank" rel="noopener">Zenodo</a></div>
+        <div class="news-source">Zenodo · arXiv · AGORA Lab</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-card-top">
+          <div class="news-date">November 2026</div>
+          <span class="news-badge nbadge-training">Paper Submitted</span>
+        </div>
+        <div class="news-title">Order Matters — Submitted to Omega</div>
+        <div class="news-body">Submitted "Order Matters: Criterion Order and the Reliability of Profile-Area Scores in Multicriteria Decision Analysis" to <em>Omega</em>. The paper shows that profile-area scores are weighted sums whose weights depend on how criteria are laid out, measures how often criterion order changes the recommended alternative, and characterises the alternatives whose ranking is order-invariant. Code and data are openly available on <a href="https://doi.org/10.5281/zenodo.24293170" target="_blank" rel="noopener">Zenodo</a> and <a href="https://github.com/saraamar/Order" target="_blank" rel="noopener">GitHub</a>.</div>
+        <div class="news-source">Omega · Zenodo · Sole author</div>
+      </div>
 
       <div class="news-card">
         <div class="news-card-top">
@@ -1423,19 +1526,19 @@ footer {
         <div class="contact-who">For prospective students</div>
         <div class="contact-title">Join the lab as MS or PhD researcher</div>
         <div class="contact-text">Tell us about your research interests, your background in ISE, operations management, or economics, and what draws you to AGORA's research agenda. Include your CV and a one-paragraph statement of research interest.</div>
-        <a class="contact-link" href="/cdn-cgi/l/email-protection#25564448445765474256500b4041501a5650474f4046511864626a77640569444705c7a5b10575574a56554046514c53400576515041404b51"><span class="__cf_email__" data-cfemail="3340525e524173515440461d565746">[email&#160;protected]</span></a>
+        <a class="contact-link" href="mailto:samar@bgsu.edu?subject=AGORA%20Lab%20%E2%80%94%20Prospective%20Student">samar@bgsu.edu</a>
       </div>
       <div class="contact-card">
         <div class="contact-who">For industry partners</div>
         <div class="contact-title">Co-develop a funded research project</div>
         <div class="contact-text">We are actively preparing NSF GOALI and NOIC proposals and looking for industry co-investigators. If you operate manufacturing, logistics, or circular economy systems and want rigorous analytical partnership, we want to talk.</div>
-        <a class="contact-link" href="/cdn-cgi/l/email-protection#cab9aba7abb88aa8adb9bfe4afaebff5b9bfa8a0afa9bef78b8d85988bea86aba8ea284a5eea83a4aebfb9beb8b3ea9aabb8bea4afb8b9a2a3ba"><span class="__cf_email__" data-cfemail="fa899b979b88ba989d898fd49f9e8f">[email&#160;protected]</span></a>
+        <a class="contact-link" href="mailto:samar@bgsu.edu?subject=AGORA%20Lab%20%E2%80%94%20Industry%20Partnership">samar@bgsu.edu</a>
       </div>
       <div class="contact-card">
         <div class="contact-who">For international collaborators</div>
         <div class="contact-title">Join a proposal or field collaboration</div>
         <div class="contact-text">We welcome collaborators from across the Global South, MENA, Africa, and Southeast Asia for the Hinrich Foundation and future development economics proposals. Respond in French, Arabic, or English — all welcomed equally.</div>
-        <a class="contact-link" href="/cdn-cgi/l/email-protection#15667478746755777266603b7071602a6660777f7076612854525a47543559747735f79581355c7b6170677b74617c7a7b747935567a797974777a6774617c7a7b"><span class="__cf_email__" data-cfemail="7605171b1704361411050358131203">[email&#16
+        <a class="contact-link" href="mailto:samar@bgsu.edu?subject=AGORA%20Lab%20%E2%80%94%20International%20Collaboration">samar@bgsu.edu
         </a>
       </div>
     </div>
